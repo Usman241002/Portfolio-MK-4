@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.container {
+  margin: 0 auto;
+  padding: var(--space-md);
+}

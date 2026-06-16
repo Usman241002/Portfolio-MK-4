@@ -1,0 +1,18 @@
+:root {
+  /* Font */
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Display */
+  --display-xl: 700 clamp(52px, 7vw, 92px)/0.93 var(--font-mono);
+
+  /* Headings */
+  --heading-lg: 700 32px/1.2 var(--font-mono);
+  --heading-md: 700 22px/1.2 var(--font-mono);
+
+  /* Body */
+  --body: 300 14px/1.8 var(--font-mono);
+
+  /* Labels */
+  --label: 600 11px/1.2 var(--font-mono);
+  --micro: 600 10px/1.2 var(--font-mono);
+}

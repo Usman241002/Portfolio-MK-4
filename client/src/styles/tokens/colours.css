@@ -1,0 +1,16 @@
+:root {
+  /* Backgrounds */
+  --bg: #edf2f7;
+  --surface: #ffffff;
+
+  /* Text */
+  --text-primary: #1b2a4a;
+  --text-secondary: #6b84a8;
+
+  /* Accent */
+  --accent: #2d6be4;
+
+  /* UI */
+  --border: #bfd0e8;
+  --hover: #e2ebf6;
+}
