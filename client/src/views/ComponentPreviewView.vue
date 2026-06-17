@@ -6,6 +6,7 @@ import Title from '@/components/Title.vue'
 import Subtitle from '@/components/Subtitle.vue'
 import Badge from '@/components/Badge.vue'
 import Navbar from '@/components/Navbar.vue'
+import StatCard from '@/components/StatCard.vue'
 </script>
 
 <template>
@@ -26,6 +27,10 @@ import Navbar from '@/components/Navbar.vue'
     <Flex gap="large">
       <Badge>React</Badge>
       <Badge>Vue.Js</Badge>
+    </Flex>
+
+    <Flex>
+      <StatCard title="6yr" desc="Usman " />
     </Flex>
   </Flex>
 </template>

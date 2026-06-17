@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { Flex } from 'ant-design-vue'
 
-const navLinks = [
+interface NavLink {
+  text: string
+  href: string
+}
+
+const navLinks: NavLink[] = [
   { text: 'Home', href: '/' },
   { text: 'Projects', href: '/projects' },
   { text: 'About', href: '/about' },
@@ -11,18 +16,34 @@ const navLinks = [
 
 <template>
   <Flex id="logo">
-    <h1 id="logo">ukhalid<span>_dev</span></h1>
+    <RouterLink to="/" id="logo">
+      <h1>ukhalid<span>_dev</span></h1>
+    </RouterLink>
   </Flex>
+
   <Flex class="nav-links">
-    <a v-for="link in navLinks" :href="link.href"><span>./</span>{{ link.text }}</a>
+    <RouterLink
+      v-for="link in navLinks"
+      :key="link.href"
+      :to="link.href"
+      class="nav-link"
+      exact-active-class="active"
+    >
+      <span>./</span>{{ link.text }}
+    </RouterLink>
   </Flex>
 </template>
 
 <style scoped>
 #logo {
+  text-decoration: none;
+}
+
+#logo h1 {
   font: var(--heading-md);
   font-weight: 700;
   text-transform: uppercase;
+  color: var(--text-primary);
 }
 
 #logo span {
@@ -33,14 +54,19 @@ const navLinks = [
   gap: 2rem;
 }
 
-.nav-links a {
+.nav-link {
   font: var(--body);
   text-transform: lowercase;
   text-decoration: none;
   color: var(--text-secondary);
 }
 
-.nav-links a span {
+.nav-link span {
   color: var(--accent);
+}
+
+.nav-link.active {
+  color: var(--text-primary);
+  font-weight: 700;
 }
 </style>
