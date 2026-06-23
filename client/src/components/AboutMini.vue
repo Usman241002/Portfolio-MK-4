@@ -12,12 +12,14 @@ import BaseButton from '@/components/BaseButton.vue'
     <Col :span="18">
       <Flex gap="24" vertical>
         <p class="about-body">
-          I'm a product designer and front-end developer based in Birmingham. I care about the gap
-          between how software gets designed and how it actually gets built — and I spend most of my
-          time closing it. <br /><br />My background spans early-stage startups to enterprise
-          products. I bring engineering literacy to design conversations and design thinking to
-          engineering ones. The work I'm most proud of is the work that nobody notices, because it
-          just works.
+          I’m a <b>full-stack software developer</b> based in Birmingham focused on closing the gap
+          between how software is designed and how it’s actually built. I spend most of my time
+          turning ideas into working systems, from early-stage concepts to production-ready
+          applications. <br /><br />
+          My experience spans web applications and business systems, with a strong focus on building
+          reliable backend services, scalable full-stack products, and practical automation tools. I
+          bring an engineering mindset to design discussions and a product-focused approach to
+          development.
         </p>
 
         <Flex gap="16">
@@ -34,5 +36,9 @@ import BaseButton from '@/components/BaseButton.vue'
   font: var(--body);
   font-size: 1.125rem;
   color: var(--text-primary);
+}
+
+b {
+  font-weight: bold;
 }
 </style>

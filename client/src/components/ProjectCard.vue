@@ -1,22 +1,21 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-import { Card } from 'ant-design-vue'
-import { Flex } from 'ant-design-vue'
+import { Card, Flex } from 'ant-design-vue'
 import Badge from '@/components/Badge.vue'
 
-const props = defineProps({
+const { project, type = 'standard' } = defineProps({
   type: String,
   project: Object,
 })
 </script>
 
 <template>
-  <Card
-    :style="{
-      borderRadius: '0',
-      border: '1px solid var(--text-primary)',
-    }"
-  >
+  <Card class="project-card">
+    <template v-if="type === 'cover'" #cover>
+      <img
+        alt="example"
+        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+      />
+    </template>
     <Flex gap="8" vertical
       ><p class="project-id">project_{{ project.id }}.tsx</p>
       <h6 class="project-title">{{ project.title }}</h6>
@@ -30,6 +29,21 @@ const props = defineProps({
 </template>
 
 <style>
+.project-card {
+  border-radius: 0;
+  border: 1px solid var(--text-primary);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  cursor: pointer;
+  transform: translateY(-0.25rem);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
 .project-id {
   font: var(--micro);
   text-transform: lowercase;

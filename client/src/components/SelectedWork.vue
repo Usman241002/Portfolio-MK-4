@@ -23,7 +23,7 @@ const projects = [
 
     <Row :gutter="[24, 24]">
       <Col v-for="project in projects" :key="project.id" :xs="24" :sm="12" :lg="8">
-        <ProjectCard type="standard" :project="project" />
+        <ProjectCard :project="project" />
       </Col>
     </Row>
 
