@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { Flex, Row, Col, Divider } from 'ant-design-vue'
-import Title from '@/components/Title.vue'
-import ProjectCard from '@/components/ProjectCard.vue'
+import Title from '@/components/portfolio/Title.vue'
+import ProjectCard from '@/components/portfolio/ProjectCard.vue'
 
 const projects = [
   {

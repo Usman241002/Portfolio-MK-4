@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Flex, Row, Col } from 'ant-design-vue'
-import Subtitle from '@/components/Subtitle.vue'
-import BaseButton from '@/components/BaseButton.vue'
+import Subtitle from '@/components/portfolio/Subtitle.vue'
+import BaseButton from '@/components/portfolio/BaseButton.vue'
 </script>
 
 <template>

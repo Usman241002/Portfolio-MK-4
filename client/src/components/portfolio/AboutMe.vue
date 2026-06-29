@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Flex } from 'ant-design-vue'
-import Title from '@/components/Title.vue'
-import BaseButton from '@/components/BaseButton.vue'
+import Title from '@/components/portfolio/Title.vue'
+import BaseButton from '@/components/portfolio/BaseButton.vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
 </script>
 

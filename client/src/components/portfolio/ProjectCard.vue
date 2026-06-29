@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Card, Flex } from 'ant-design-vue'
-import Badge from '@/components/Badge.vue'
+import Badge from '@/components/portfolio/Badge.vue'
 
 const { project, type = 'standard' } = defineProps({
   type: String,

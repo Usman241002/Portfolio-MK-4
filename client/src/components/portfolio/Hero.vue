@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Flex, Row, Col, Divider } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
-import BaseButton from '@/components/BaseButton.vue'
-import Title from '@/components/Title.vue'
-import Subtitle from '@/components/Subtitle.vue'
-import StatCard from '@/components/StatCard.vue'
-import PropertiesCard from '@/components/PropertiesCard.vue'
-import Cursor from '@/components/Cursor.vue'
+import BaseButton from '@/components/portfolio/BaseButton.vue'
+import Title from '@/components/portfolio/Title.vue'
+import Subtitle from '@/components/portfolio/Subtitle.vue'
+import StatCard from '@/components/portfolio/StatCard.vue'
+import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
+import Cursor from '@/components/portfolio/Cursor.vue'
 
 const properties = [
   { name: 'Name', value: '"Usman Khalid"' },

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Flex, Divider } from 'ant-design-vue'
 
-import Hero from '@/components/Hero.vue'
-import SelectedWork from '@/components/SelectedWork.vue'
-import AboutMini from '@/components/AboutMini.vue'
+import Hero from '@/components/portfolio/Hero.vue'
+import SelectedWork from '@/components/portfolio/SelectedWork.vue'
+import AboutMini from '@/components/portfolio/AboutMini.vue'
 </script>
 
 <template>

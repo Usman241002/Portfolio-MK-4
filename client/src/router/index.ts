@@ -1,19 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import MainLayout from '@/layouts/MainLayout.vue'
+import PortfolioLayout from '@/layouts/PortfolioLayout.vue'
+import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
-import HomeView from '@/views/HomeView.vue'
-import ProjectsView from '@/views/ProjectsView.vue'
-import AboutView from '@/views/AboutView.vue'
-import ContactView from '@/views/ContactView.vue'
+import HomeView from '@/views/portfolio/HomeView.vue'
+import ProjectsView from '@/views/portfolio/ProjectsView.vue'
+import AboutView from '@/views/portfolio/AboutView.vue'
+import ContactView from '@/views/portfolio/ContactView.vue'
 import ComponentPreviewView from '@/views/ComponentPreviewView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+
   routes: [
     {
       path: '/',
-      component: MainLayout,
+      component: PortfolioLayout,
       children: [
         {
           path: '',
@@ -42,7 +44,20 @@ const router = createRouter({
       name: 'components',
       component: ComponentPreviewView,
     },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: DashboardLayout,
+      children: [],
+    },
   ],
+
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      top: 0,
+      behavior: 'smooth',
+    }
+  },
 })
 
 export default router

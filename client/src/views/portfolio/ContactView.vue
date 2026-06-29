@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Row, Col, Flex, Form, Input, Textarea, Divider } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
-import Title from '@/components/Title.vue'
-import Subtitle from '@/components/Subtitle.vue'
-import BaseButton from '@/components/BaseButton.vue'
-import PropertiesCard from '@/components/PropertiesCard.vue'
+import Title from '@/components/portfolio/Title.vue'
+import Subtitle from '@/components/portfolio/Subtitle.vue'
+import BaseButton from '@/components/portfolio/BaseButton.vue'
+import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
 
 const properties = [
   { name: 'email', value: '"ukhalid428@gmail.com"' },

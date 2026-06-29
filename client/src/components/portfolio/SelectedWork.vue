@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Flex, Row, Col } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
-import Subtitle from '@/components/Subtitle.vue'
-import ProjectCard from '@/components/ProjectCard.vue'
-import BaseButton from '@/components/BaseButton.vue'
+import Subtitle from '@/components/portfolio/Subtitle.vue'
+import ProjectCard from '@/components/portfolio/ProjectCard.vue'
+import BaseButton from '@/components/portfolio/BaseButton.vue'
 
 const projects = [
   {

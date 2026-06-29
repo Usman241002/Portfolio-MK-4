@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Flex, Row, Col, Divider } from 'ant-design-vue'
-import Subtitle from '@/components/Subtitle.vue'
-import AboutMe from '@/components/AboutMe.vue'
-import SkillsTable from '@/components/SkillsTable.vue'
-import ExperienceCard from '@/components/ExperienceCard.vue'
+import Subtitle from '@/components/portfolio/Subtitle.vue'
+import AboutMe from '@/components/portfolio/AboutMe.vue'
+import SkillsTable from '@/components/portfolio/SkillsTable.vue'
+import ExperienceCard from '@/components/portfolio/ExperienceCard.vue'
 
 const experience = [
   {
