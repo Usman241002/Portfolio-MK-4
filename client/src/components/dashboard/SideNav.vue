@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-
 import { Flex } from 'ant-design-vue'
 import {
   ArrowRightOutlined,
@@ -13,54 +11,59 @@ import {
   SettingOutlined,
 } from '@ant-design/icons-vue'
 
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
 const items = [
   {
     title: 'Content',
     icon: ArrowRightOutlined,
     children: [
-      { title: 'Overview', key: 1, icon: AppstoreOutlined },
-      { title: 'Projects', key: 2, icon: FolderOpenOutlined },
-      { title: 'Personal Data', key: 3, icon: UserOutlined },
+      { title: 'Overview', key: 1, icon: AppstoreOutlined, link: '' },
+      { title: 'Projects', key: 2, icon: FolderOpenOutlined, link: 'projects' },
+      { title: 'Personal Data', key: 3, icon: UserOutlined, link: 'personal' },
     ],
   },
   {
     title: 'Pages',
     icon: ArrowRightOutlined,
     children: [
-      { title: 'Home', key: 4, icon: HomeOutlined },
-      { title: 'About', key: 5, icon: InfoCircleOutlined },
-      { title: 'Contact', key: 6, icon: MailOutlined },
+      { title: 'Home', key: 4, icon: HomeOutlined, link: 'home' },
+      { title: 'About', key: 5, icon: InfoCircleOutlined, link: 'about' },
+      { title: 'Contact', key: 6, icon: MailOutlined, link: 'contact' },
     ],
   },
   {
     title: 'System',
     icon: ArrowRightOutlined,
-    children: [{ title: 'Settings', key: 7, icon: SettingOutlined }],
+    children: [{ title: 'Settings', key: 7, icon: SettingOutlined, link: 'settings' }],
   },
 ]
 const selectedKey = ref(1)
 
-function onClick(key: number) {
+const router = useRouter()
+
+function onClick(link: string, key: number) {
   selectedKey.value = key
-  console.log('Changing Key into ', key)
+  router.push(`/dashboard/${link}`)
 }
 </script>
 
 <template>
-  <Flex id="sidenav-container " vertical>
+  <Flex id="sidenav-container" vertical>
     <Flex v-for="item in items" :key="item.title" class="group" vertical>
       <h3>{{ item.title }}</h3>
 
       <Flex vertical>
-        <btn
+        <button
           v-for="child in item.children"
           :key="child.title"
-          @click="onClick(child.key)"
+          @click="onClick(child.link, child.key)"
           :class="['sidenav-button', { active: child.key === selectedKey }]"
         >
           <component :is="child.icon" />
           <p>{{ child.title }}</p>
-        </btn>
+        </button>
       </Flex>
     </Flex>
   </Flex>

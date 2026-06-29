@@ -18,10 +18,7 @@ import SideNav from '@/components/dashboard/SideNav.vue'
     >
       <SideNav />
     </Layout.Sider>
-    <Layout.Content
-      class="container"
-      :style="{ backgroundColor: 'var(--bg)', marginTop: '3.25rem' }"
-    >
+    <Layout.Content :style="{ backgroundColor: 'var(--bg)', marginTop: '3.25rem' }">
       <RouterView />
     </Layout.Content>
   </Layout>

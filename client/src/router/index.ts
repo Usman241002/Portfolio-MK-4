@@ -7,7 +7,16 @@ import HomeView from '@/views/portfolio/HomeView.vue'
 import ProjectsView from '@/views/portfolio/ProjectsView.vue'
 import AboutView from '@/views/portfolio/AboutView.vue'
 import ContactView from '@/views/portfolio/ContactView.vue'
+
 import ComponentPreviewView from '@/views/ComponentPreviewView.vue'
+
+import OverviewDash from '@/views/dashboard/OverviewDash.vue'
+import ProjectsDash from '@/views/dashboard/ProjectsDash.vue'
+import PersonalDash from '@/views/dashboard/PersonalDash.vue'
+import HomeDash from '@/views/dashboard/HomeDash.vue'
+import AboutDash from '@/views/dashboard/AboutDash.vue'
+import ContactDash from '@/views/dashboard/ContactDash.vue'
+import SettingsDash from '@/views/dashboard/SettingsDash.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,7 +57,43 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: DashboardLayout,
-      children: [],
+      children: [
+        {
+          path: '',
+          name: 'dash-overview',
+          component: OverviewDash,
+        },
+        {
+          path: 'projects',
+          name: 'dash-projects',
+          component: ProjectsDash,
+        },
+        {
+          path: 'personal',
+          name: 'dash-personal',
+          component: PersonalDash,
+        },
+        {
+          path: 'home',
+          name: 'dash-home',
+          component: HomeDash,
+        },
+        {
+          path: 'about',
+          name: 'dash-about',
+          component: AboutDash,
+        },
+        {
+          path: 'contact',
+          name: 'dash-contact',
+          component: ContactDash,
+        },
+        {
+          path: 'settings',
+          name: 'dash-settings',
+          component: SettingsDash,
+        },
+      ],
     },
   ],
 

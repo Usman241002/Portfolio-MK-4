@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+defineEmits(['click'])
+
 const props = defineProps({
   type: {
     type: String,
@@ -14,5 +16,7 @@ const btnClass = computed(() =>
 </script>
 
 <template>
-  <button :class="btnClass"><slot /></button>
+  <button :class="btnClass" @click="$emit('click')">
+    <slot />
+  </button>
 </template>
