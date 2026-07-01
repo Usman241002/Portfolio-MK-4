@@ -28,7 +28,7 @@ import { ArrowRightOutlined } from '@ant-design/icons-vue'
     </p>
     <Flex gap="16"
       ><BaseButton>Get in touch <ArrowRightOutlined /></BaseButton>
-      <BaseButton type="secondary">View CV</BaseButton></Flex
+      <BaseButton variant="secondary">View CV</BaseButton></Flex
     >
   </Flex>
 </template>

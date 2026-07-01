@@ -9,3 +9,7 @@ body {
 .container {
   padding: var(--space-md);
 }
+
+.dash-container {
+  padding: var(--space-md) var(--space-xl);
+}

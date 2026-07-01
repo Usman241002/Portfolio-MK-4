@@ -24,7 +24,7 @@ import BaseButton from '@/components/portfolio/BaseButton.vue'
 
         <Flex gap="16">
           <BaseButton>Read more</BaseButton>
-          <BaseButton type="secondary">Say Hello</BaseButton>
+          <BaseButton variant="secondary">Say Hello</BaseButton>
         </Flex></Flex
       >
     </Col>

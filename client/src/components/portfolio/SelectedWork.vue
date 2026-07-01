@@ -28,7 +28,7 @@ const projects = [
     </Row>
 
     <Flex justify="flex-end">
-      <BaseButton type="secondary">
+      <BaseButton variant="secondary">
         View all projects
         <ArrowRightOutlined />
       </BaseButton>

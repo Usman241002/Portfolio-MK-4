@@ -1,22 +1,24 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 
 defineEmits(['click'])
 
+const attrs = useAttrs()
+
 const props = defineProps({
-  type: {
+  variant: {
     type: String,
     default: 'primary',
   },
 })
 
 const btnClass = computed(() =>
-  props.type === 'secondary' ? 'btn btn-secondary' : 'btn btn-primary',
+  props.variant === 'secondary' ? 'btn btn-secondary' : 'btn btn-primary',
 )
 </script>
 
 <template>
-  <button :class="btnClass" @click="$emit('click')">
+  <button v-bind="attrs" :class="btnClass" @click="$emit('click')">
     <slot />
   </button>
 </template>

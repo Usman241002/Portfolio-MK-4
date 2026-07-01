@@ -1,5 +1,21 @@
 <script setup lang="ts">
-import { Flex } from 'ant-design-vue'
+import { Flex, Button } from 'ant-design-vue'
+import { LogoutOutlined, FileOutlined } from '@ant-design/icons-vue'
+
+import useAuthStore from '@/stores/authStore.js'
+import { useRouter } from 'vue-router'
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+async function onLogout() {
+  try {
+    await authStore.logout()
+    router.push('/')
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
 
 <template>
@@ -8,6 +24,13 @@ import { Flex } from 'ant-design-vue'
       <h1>ukhalid<span>_dev</span></h1>
     </RouterLink>
     <p id="page-id">| Admin board</p>
+  </Flex>
+
+  <Flex gap="8">
+    <Button type="text" class="dash-nav-btn" @click="router.push('/')"
+      ><FileOutlined />Portfolio</Button
+    >
+    <Button type="text" class="dash-nav-btn" @click="onLogout"><LogoutOutlined />Logout</Button>
   </Flex>
 </template>
 
@@ -30,5 +53,13 @@ import { Flex } from 'ant-design-vue'
 
 #logo span {
   color: var(--text-secondary);
+}
+
+.dash-nav-btn {
+  color: var(--surface);
+}
+
+.dash-nav-btn:hover {
+  color: var(--accent);
 }
 </style>

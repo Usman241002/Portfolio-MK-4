@@ -21,8 +21,8 @@ import StatCard from '@/components/portfolio/StatCard.vue'
     </Flex>
 
     <Flex
-      ><BaseButton type="primary">Get in touch <ArrowRightOutlined /></BaseButton>
-      <BaseButton type="secondary">View Cv </BaseButton></Flex
+      ><BaseButton variant="primary">Get in touch <ArrowRightOutlined /></BaseButton>
+      <BaseButton variant="secondary">View Cv </BaseButton></Flex
     >
     <Flex gap="large">
       <Badge>React</Badge>

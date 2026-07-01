@@ -3,6 +3,8 @@ import Router from "koa-router";
 import koaBody from "koa-body";
 import cors from "@koa/cors";
 import dotenv from "dotenv";
+import authRouter from "./routes/authRoute.js";
+import projectsRouter from "./routes/projectsRoute.js";
 
 dotenv.config();
 
@@ -16,11 +18,28 @@ app.use(
   }),
 );
 
+app.use(koaBody());
+
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    if (err.status === 401) {
+      ctx.status = 401;
+      ctx.body = { error: "Invalid or expired token" };
+    } else {
+      throw err;
+    }
+  }
+});
+
 //creating a base router so all api routes start with /api
 const router = new Router({
   prefix: "/api",
 });
 
+router.use(authRouter.routes());
+router.use(projectsRouter.routes());
 app.use(router.routes());
 
 export default app;

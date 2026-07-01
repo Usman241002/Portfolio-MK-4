@@ -4,18 +4,15 @@ import { Flex, Row, Col, Divider } from 'ant-design-vue'
 import Title from '@/components/portfolio/Title.vue'
 import ProjectCard from '@/components/portfolio/ProjectCard.vue'
 
-const projects = [
-  {
-    id: 1,
-    title: 'Project 1',
-    description: 'Description for Project 1',
-    tags: ['Vue', 'TypeScript'],
-  },
-  { id: 2, title: 'Project 2', description: 'Description for Project 2', tags: ['React'] },
-  { id: 3, title: 'Project 3', description: 'Description for Project 3', tags: ['JS'] },
-  { id: 4, title: 'Project 4', description: 'Description for Project 4', tags: ['Vue'] },
-  { id: 5, title: 'Project 5', description: 'Description for Project 5', tags: ['something'] },
-]
+import useProjectsStore from '@/stores/projectsStore.js'
+
+const projectsStore = useProjectsStore()
+
+onMounted(async () => {
+  await projectsStore.getAllProjects()
+})
+
+const projects = projectsStore.projects
 
 const projectCount = ref(0)
 const target = projects.length

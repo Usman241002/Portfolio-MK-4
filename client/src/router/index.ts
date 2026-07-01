@@ -9,6 +9,7 @@ import AboutView from '@/views/portfolio/AboutView.vue'
 import ContactView from '@/views/portfolio/ContactView.vue'
 
 import ComponentPreviewView from '@/views/ComponentPreviewView.vue'
+import LoginView from '@/views/LoginView.vue'
 
 import OverviewDash from '@/views/dashboard/OverviewDash.vue'
 import ProjectsDash from '@/views/dashboard/ProjectsDash.vue'
@@ -17,6 +18,9 @@ import HomeDash from '@/views/dashboard/HomeDash.vue'
 import AboutDash from '@/views/dashboard/AboutDash.vue'
 import ContactDash from '@/views/dashboard/ContactDash.vue'
 import SettingsDash from '@/views/dashboard/SettingsDash.vue'
+
+import useAuthStore from '@/stores/authStore.js'
+import { pinia } from '@/main'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,9 +58,15 @@ const router = createRouter({
       component: ComponentPreviewView,
     },
     {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+    },
+    {
       path: '/dashboard',
       name: 'dashboard',
       component: DashboardLayout,
+      meta: { requiresAuth: true },
       children: [
         {
           path: '',
@@ -103,6 +113,20 @@ const router = createRouter({
       behavior: 'smooth',
     }
   },
+})
+
+router.beforeEach(async (to, from, next) => {
+  const auth = useAuthStore(pinia)
+
+  if (to.meta.requiresAuth) {
+    if (auth.isLoggedIn) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

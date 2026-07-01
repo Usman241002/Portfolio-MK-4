@@ -38,11 +38,12 @@ const phrases = [
         <Cursor :phrases="phrases" />
         <Flex gap="16">
           <BaseButton>Get in touch <ArrowRightOutlined /></BaseButton>
-          <BaseButton type="secondary">View CV</BaseButton>
+          <BaseButton variant="secondary">View CV</BaseButton>
         </Flex>
       </Flex>
     </Col>
-    <Col :span="10"
+    <Col :span="4" />
+    <Col :span="6"
       ><Flex class="container" align="end" gap="16" vertical>
         <StatCard title="4" desc="total projects" /><StatCard
           title="4yr"

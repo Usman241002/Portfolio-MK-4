@@ -19,7 +19,7 @@ const { project, type = 'standard' } = defineProps({
     <Flex gap="8" vertical
       ><p class="project-id">project_{{ project.id }}.tsx</p>
       <h6 class="project-title">{{ project.title }}</h6>
-      <p class="project-description">{{ project.description }}</p>
+      <p class="project-description">{{ project.short_description }}</p>
 
       <Flex gap="12">
         <Badge v-for="tag in project.tags" :key="tag">{{ tag }}</Badge>
