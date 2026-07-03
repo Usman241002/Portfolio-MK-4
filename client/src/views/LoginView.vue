@@ -73,15 +73,4 @@ async function onSubmit(formState) {
 #login-subtitle {
   font: var(--body);
 }
-
-.form-input {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0;
-  padding: 0.5rem 0.75rem;
-  font: var(--body);
-  color: var(--text-primary);
-  transition: border-color 0.15s;
-}
 </style>

@@ -48,11 +48,12 @@ CREATE TABLE project_images (
         ON UPDATE CASCADE
 );
 
--- -- SKILLS
--- CREATE TABLE skills (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     name VARCHAR(255) NOT NULL UNIQUE
--- );
+-- SKILLS
+CREATE TABLE skills (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    level VARCHAR(255) NOT NULL
+);
 
 -- -- PROJECT SKILLS (many-to-many)
 -- CREATE TABLE project_skills (
@@ -123,3 +124,30 @@ INSERT INTO projects (user_id, title, short_description, description, status, re
 VALUES (1, 'Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
 INSERT INTO projects (user_id, title, short_description, description, status, repository_url, live_demo_url, thumbnail)
 VALUES (1, 'Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
+
+INSERT INTO skills (name, level)
+VALUES ('React', '3 years');
+INSERT INTO skills (name, level)
+VALUES ('Vue.js', '1 year');
+INSERT INTO skills (name, level)
+VALUES ('Javascript', '4 years');
+INSERT INTO skills (name, level)
+VALUES ('TypeScript', '3 years');
+INSERT INTO skills (name, level)
+VALUES ('HTML', '5 years');
+INSERT INTO skills (name, level)
+VALUES ('CSS', '5 years');
+INSERT INTO skills (name, level)
+VALUES ('PHP', '3 years');
+INSERT INTO skills (name, level)
+VALUES ('Node.js', '2 years');
+INSERT INTO skills (name, level)
+VALUES ('Python', '4 years');
+INSERT INTO skills (name, level)
+VALUES ('C', '1 year');
+INSERT INTO skills (name, level)
+VALUES ('C++', '2 years');
+INSERT INTO skills (name, level)
+VALUES ('SQL', '3 years');
+INSERT INTO skills (name, level)
+VALUES ('Figma', '3 years');

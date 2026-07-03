@@ -5,6 +5,7 @@ import cors from "@koa/cors";
 import dotenv from "dotenv";
 import authRouter from "./routes/authRoute.js";
 import projectsRouter from "./routes/projectsRoute.js";
+import skillsRouter from "./routes/skillsRoute.js";
 
 dotenv.config();
 
@@ -40,6 +41,8 @@ const router = new Router({
 
 router.use(authRouter.routes());
 router.use(projectsRouter.routes());
+router.use(skillsRouter.routes());
+
 app.use(router.routes());
 
 export default app;

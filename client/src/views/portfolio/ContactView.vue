@@ -68,23 +68,6 @@ h2 {
   font: var(--heading-lg);
 }
 
-:deep(.ant-form-item-label > label) {
-  font: var(--micro);
-  color: var(--text-secondary);
-  text-transform: uppercase;
-}
-
-.form-input {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0;
-  padding: 0.5rem 0.75rem;
-  font: var(--body);
-  color: var(--text-primary);
-  transition: border-color 0.15s;
-}
-
 .property-name {
   font: var(--label);
   color: var(--text-secondary);

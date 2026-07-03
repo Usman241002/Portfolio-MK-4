@@ -14,7 +14,7 @@ const props = defineProps({
   </Flex>
 </template>
 
-<style>
+<style scoped>
 .stat-card {
   background-color: var(--surface);
   border: 1px solid var(--text-primary);

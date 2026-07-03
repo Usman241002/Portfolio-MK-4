@@ -5,6 +5,7 @@ const projectsRouter = new Router({
   prefix: "/projects",
 });
 
+//GET /api/projects
 projectsRouter.get("/", getAllProjects);
 
 export default projectsRouter;

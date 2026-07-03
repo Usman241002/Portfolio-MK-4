@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { Flex, Row, Col, Divider } from 'ant-design-vue'
 import Title from '@/components/portfolio/Title.vue'
 import ProjectCard from '@/components/portfolio/ProjectCard.vue'
 
+import { storeToRefs } from 'pinia'
 import useProjectsStore from '@/stores/projectsStore.js'
 
 const projectsStore = useProjectsStore()
@@ -12,32 +13,37 @@ onMounted(async () => {
   await projectsStore.getAllProjects()
 })
 
-const projects = projectsStore.projects
+const { projects } = storeToRefs(projectsStore)
 
 const projectCount = ref(0)
-const target = projects.length
+const target = computed(() => projects.value.length)
 
-onMounted(() => {
-  const duration = 1200
-  const start = performance.now()
+watch(
+  target,
+  (newTarget) => {
+    if (newTarget === 0) return
 
-  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
+    const duration = 1200
+    const start = performance.now()
 
-  function animate(time: number) {
-    const progress = Math.min((time - start) / duration, 1)
-    const eased = easeOutCubic(progress)
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
 
-    projectCount.value = Math.floor(eased * target)
+    function animate(time: number) {
+      const progress = Math.min((time - start) / duration, 1)
 
-    if (progress < 1) {
-      requestAnimationFrame(animate)
-    } else {
-      projectCount.value = target
+      projectCount.value = Math.floor(easeOutCubic(progress) * newTarget)
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      } else {
+        projectCount.value = newTarget
+      }
     }
-  }
 
-  requestAnimationFrame(animate)
-})
+    requestAnimationFrame(animate)
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
