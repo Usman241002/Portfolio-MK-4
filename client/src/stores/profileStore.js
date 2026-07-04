@@ -9,7 +9,7 @@ const useProfileStore = defineStore('profile', () => {
     name: '',
     role: '',
     location: '',
-    status: '',
+    status: 'open to work',
     email: '',
     github_url: '',
     linkedin_url: '',

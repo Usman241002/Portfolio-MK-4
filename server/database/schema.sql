@@ -36,19 +36,19 @@ CREATE TABLE projects (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- PROJECT IMAGES
-CREATE TABLE project_images (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    project_id INT NOT NULL,
-    image_url VARCHAR(255) NOT NULL,
-    caption VARCHAR(255),
+-- -- PROJECT IMAGES
+-- CREATE TABLE project_images (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     project_id INT NOT NULL,
+--     image_url VARCHAR(255) NOT NULL,
+--     caption VARCHAR(255),
 
-    CONSTRAINT fk_project_images_project
-        FOREIGN KEY (project_id)
-        REFERENCES projects(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
+--     CONSTRAINT fk_project_images_project
+--         FOREIGN KEY (project_id)
+--         REFERENCES projects(id)
+--         ON DELETE CASCADE
+--         ON UPDATE CASCADE
+-- );
 
 -- SKILLS
 CREATE TABLE skills (
@@ -91,31 +91,23 @@ CREATE TABLE skills (
 --         ON DELETE CASCADE
 -- );
 
--- -- EXPERIENCE
--- CREATE TABLE experience (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     user_id INT NOT NULL,
---     company VARCHAR(255) NOT NULL,
---     position VARCHAR(255) NOT NULL,
---     employment_type ENUM(
---         'Full-time',
---         'Part-time',
---         'Internship',
---         'Contract',
---         'Freelance'
---     ),
---     location VARCHAR(255) NOT NULL,
---     start_date DATE NOT NULL,
---     end_date DATE,
---     currently_working BOOLEAN NOT NULL,
---     description TEXT,
---     sort_order INT NOT NULL,
-
---     CONSTRAINT fk_experience_user
---         FOREIGN KEY (user_id)
---         REFERENCES users(id)
---         ON DELETE CASCADE
--- );
+-- EXPERIENCE
+CREATE TABLE experience (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    start_date DATE NOT NULL,
+    end_date DATE NULL,
+    title VARCHAR(255) NOT NULL,
+    company VARCHAR(255) NOT NULL,
+    employment_type ENUM(
+        'full-time',
+        'part-time',
+        'internship',
+        'contract',
+        'freelance'
+    ) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    description TEXT
+);
 
 INSERT INTO projects (title, short_description, description, status, repository_url, live_demo_url, thumbnail)
 VALUES ('Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
@@ -153,3 +145,12 @@ VALUES ('Figma', '3 years');
 
 INSERT INTO profile (name, role, location, status, email, github_url, linkedin_url)
 VALUES ('Usman Khalid', 'Software Engineer', 'Birmingham, UK', 'open to work', 'ukhalid428@gmail.com', 'https://github.com/Usman241002', 'https://www.linkedin.com/in/usman-khalid-dev/');
+
+INSERT INTO experience
+(start_date, end_date, title, company, employment_type, location, description)
+VALUES
+('2025-01-01', '2026-01-01', 'Software Engineer', 'Meridian Finance', 'full-time', 'Birmingham, UK', 'Worked on onboarding systems improving user conversion and compliance workflows.'),
+
+('2024-06-01', '2024-12-31', 'Frontend Developer Intern', 'Nova Labs', 'internship', 'London, UK', 'Built Vue.js dashboards and improved UI performance across internal tools.'),
+
+('2023-01-01', '2024-05-31', 'Junior Web Developer', 'Freelance', 'freelance', 'Remote', 'Delivered full-stack web applications for small business clients using Vue, PHP, and Node.js.');

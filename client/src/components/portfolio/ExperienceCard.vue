@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { Row, Col, Flex } from 'ant-design-vue'
+import dayjs from 'dayjs'
 
 interface ExperienceItem {
-  from: string
-  to: string
+  start_date: string
+  end_date: string
   title: string
   company: string
-  desc: string
+  description: string
 }
 
 defineProps<{
@@ -17,14 +18,17 @@ defineProps<{
 <template>
   <Row class="experience-card">
     <Col :span="4">
-      <p class="timeline">{{ item.from }} → {{ item.to }}</p>
+      <p class="timeline">
+        {{ dayjs(item.start_date).format('MM-YYYY') }} →
+        {{ item.end_date == null ? 'Present' : dayjs(item.end_date).format('MM-YYYY') }}
+      </p>
     </Col>
 
     <Col :span="20">
       <Flex vertical class="content">
         <h5 class="title">{{ item.title }}</h5>
         <h6 class="company">{{ item.company }}</h6>
-        <p class="description">{{ item.desc }}</p>
+        <p class="description">{{ item.description }}</p>
       </Flex>
     </Col>
   </Row>

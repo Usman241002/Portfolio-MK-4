@@ -10,8 +10,10 @@ import IdentityView from './IdentityView.vue'
 import TimelineView from './TimelineView.vue'
 
 import useProfileStore from '@/stores/profileStore.js'
+import useExperienceStore from '@/stores/experienceStore.js'
 
 const profileStore = useProfileStore()
+const experienceStore = useExperienceStore()
 
 const current = ref(['1'])
 
@@ -40,6 +42,7 @@ const activeComponent = computed(() => views[current.value[0]])
 
 async function onSave() {
   await profileStore.updateProfile()
+  await experienceStore.updateExperience()
 }
 </script>
 

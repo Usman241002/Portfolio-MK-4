@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { Flex, Row, Col, Form, Input, Divider } from 'ant-design-vue'
+import { Flex, Row, Col, Form, Input, Divider, Select } from 'ant-design-vue'
 import Subtitle from '@/components/portfolio/Subtitle.vue'
 import useProfileStore from '@/stores/profileStore.js'
 
@@ -32,7 +32,15 @@ onMounted(async () => {
           </Form.Item> </Col
         ><Col :span="12">
           <Form.Item class="form-label" name="status" label="Status">
-            <Input class="form-input" v-model:value="profileStore.profile.status" />
+            <Select
+              v-model:value="profileStore.profile.status"
+              class="form-select"
+              :options="[
+                { value: 'open to work', label: 'Open to work' },
+                { value: 'selective projects', label: 'Selective projects' },
+                { value: 'not available', label: 'Not available' },
+              ]"
+            />
           </Form.Item> </Col
       ></Row>
       <Subtitle>Contacts and links</Subtitle>
