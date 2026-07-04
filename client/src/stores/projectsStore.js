@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { API_URL } from '@/config.js'
+import useAuthStore from '@/stores/authStore.js'
 
 const useProjectsStore = defineStore('projects', () => {
+  const authStore = useAuthStore()
   const projects = ref([])
 
   async function getAllProjects() {

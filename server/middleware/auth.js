@@ -4,5 +4,4 @@ dotenv.config();
 
 export const jwtMiddleware = jwt({
   secret: process.env.JWT_SECRET,
-  key: "user",
 });

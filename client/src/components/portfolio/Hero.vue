@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
 import { Flex, Row, Col, Divider } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
@@ -8,11 +9,19 @@ import StatCard from '@/components/portfolio/StatCard.vue'
 import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
 import Cursor from '@/components/portfolio/Cursor.vue'
 
-const properties = [
-  { name: 'Name', value: '"Usman Khalid"' },
-  { name: 'Role', value: '"Full Stack Developer"' },
-  { name: 'Location', value: '"Birmingham, UK"' },
-]
+import useProfileStore from '@/stores/profileStore'
+
+const profileStore = useProfileStore()
+
+onMounted(async () => {
+  await profileStore.fetchProfile()
+})
+
+const properties = computed(() => [
+  { name: 'Name', value: profileStore.profile.name },
+  { name: 'Role', value: profileStore.profile.role },
+  { name: 'Location', value: profileStore.profile.location },
+])
 
 const phrases = [
   'Frontend Builder.',
@@ -57,7 +66,9 @@ const phrases = [
           <Divider :style="{ borderColor: 'var(--accent)', margin: '0' }" />
           <Flex vertical>
             <p class="property-name">Status</p>
-            <p class="property-value" :style="{ color: 'var(--accent)' }">"open to work"</p>
+            <p class="property-value" :style="{ color: 'var(--accent)' }">
+              "{{ profileStore.profile.status }}"
+            </p>
           </Flex>
           <BaseButton>Get in touch <ArrowRightOutlined /></BaseButton>
         </PropertiesCard> </Flex

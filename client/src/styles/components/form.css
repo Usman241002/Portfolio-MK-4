@@ -12,6 +12,7 @@
 
 .form-input {
   width: 100%;
+  height: 2rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 0;

@@ -5,22 +5,16 @@ import { API_URL } from '@/config'
 const apiUrl = import.meta.env.VITE_API_URL
 
 const useAuthStore = defineStore('auth', () => {
-  const id = ref(null)
-  const email = ref(null)
   const token = ref(null)
 
   const isLoggedIn = computed(() => !!token.value)
 
   function setUser(data) {
-    id.value = data.user.id
-    email.value = data.user.email
     token.value = data.token
 
     localStorage.setItem(
       'auth',
       JSON.stringify({
-        id: id.value,
-        email: email.value,
         token: token.value,
       }),
     )
@@ -50,8 +44,6 @@ const useAuthStore = defineStore('auth', () => {
   }
 
   function logout() {
-    id.value = null
-    email.value = null
     token.value = null
 
     localStorage.removeItem('auth')
@@ -63,8 +55,6 @@ const useAuthStore = defineStore('auth', () => {
     if (stored) {
       try {
         const parsed = JSON.parse(stored)
-        id.value = parsed.id
-        email.value = parsed.email
         token.value = parsed.token
       } catch (error) {
         console.error('Error hydrating auth state:', error)
@@ -75,7 +65,7 @@ const useAuthStore = defineStore('auth', () => {
 
   hydrate()
 
-  return { id, email, token, isLoggedIn, setUser, login, logout }
+  return { token, isLoggedIn, setUser, login, logout }
 })
 
 export default useAuthStore

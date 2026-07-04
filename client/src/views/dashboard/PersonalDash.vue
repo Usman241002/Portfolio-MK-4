@@ -1,12 +1,17 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+import { Menu } from 'ant-design-vue'
+
 import Header from '@/components/dashboard/Header.vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
 
-import { ref, computed } from 'vue'
-import { Menu } from 'ant-design-vue'
 import SkillsView from './SkillsView.vue'
 import IdentityView from './IdentityView.vue'
 import TimelineView from './TimelineView.vue'
+
+import useProfileStore from '@/stores/profileStore.js'
+
+const profileStore = useProfileStore()
 
 const current = ref(['1'])
 
@@ -32,11 +37,15 @@ const views = {
 }
 
 const activeComponent = computed(() => views[current.value[0]])
+
+async function onSave() {
+  await profileStore.updateProfile()
+}
 </script>
 
 <template>
   <Header title="Personal Data">
-    <BaseButton>Save Changes</BaseButton>
+    <BaseButton @click="onSave">Save Changes</BaseButton>
   </Header>
 
   <Menu

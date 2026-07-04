@@ -3,12 +3,21 @@ CREATE DATABASE portfolio;
 USE portfolio;
 
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS skills;
+DROP TABLE IF EXISTS profile;
 
--- USERS
-CREATE TABLE users (
+
+-- PROFILE
+CREATE TABLE profile (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255),
+    role VARCHAR(255),
+    location VARCHAR(255),
+    status ENUM('open to work', 'selective projects', "not available") NOT NULL DEFAULT 'open to work',
+    email VARCHAR(255),
+    github_url VARCHAR(2048),
+    linkedin_url VARCHAR(2048),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -16,22 +25,15 @@ CREATE TABLE users (
 -- PROJECTS
 CREATE TABLE projects (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    title VARCHAR(255),
-    short_description TEXT,
-    description TEXT,
+    title VARCHAR(255) NOT NULL,
+    short_description TEXT NOT NULL,
+    description TEXT NOT NULL,
     status ENUM('ongoing', 'completed', 'archived') NOT NULL DEFAULT 'ongoing',
-    repository_url VARCHAR(255),
-    live_demo_url VARCHAR(255),
+    repository_url VARCHAR(2048),
+    live_demo_url VARCHAR(2048),
     thumbnail VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-    CONSTRAINT fk_projects_user
-        FOREIGN KEY (user_id)
-        REFERENCES users(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- PROJECT IMAGES
@@ -115,15 +117,12 @@ CREATE TABLE skills (
 --         ON DELETE CASCADE
 -- );
 
-INSERT INTO users (email, password)
-VALUES ('ukhalid428@gmail.com', 'test1234');
-
-INSERT INTO projects (user_id, title, short_description, description, status, repository_url, live_demo_url, thumbnail)
-VALUES (1, 'Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
-INSERT INTO projects (user_id, title, short_description, description, status, repository_url, live_demo_url, thumbnail)
-VALUES (1, 'Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
-INSERT INTO projects (user_id, title, short_description, description, status, repository_url, live_demo_url, thumbnail)
-VALUES (1, 'Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
+INSERT INTO projects (title, short_description, description, status, repository_url, live_demo_url, thumbnail)
+VALUES ('Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
+INSERT INTO projects (title, short_description, description, status, repository_url, live_demo_url, thumbnail)
+VALUES ('Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
+INSERT INTO projects (title, short_description, description, status, repository_url, live_demo_url, thumbnail)
+VALUES ('Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
 
 INSERT INTO skills (name, level)
 VALUES ('React', '3 years');
@@ -151,3 +150,6 @@ INSERT INTO skills (name, level)
 VALUES ('SQL', '3 years');
 INSERT INTO skills (name, level)
 VALUES ('Figma', '3 years');
+
+INSERT INTO profile (name, role, location, status, email, github_url, linkedin_url)
+VALUES ('Usman Khalid', 'Software Engineer', 'Birmingham, UK', 'open to work', 'ukhalid428@gmail.com', 'https://github.com/Usman241002', 'https://www.linkedin.com/in/usman-khalid-dev/');

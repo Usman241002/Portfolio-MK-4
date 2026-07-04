@@ -1,17 +1,26 @@
 <script setup lang="ts">
-import { Row, Col, Flex, Form, Input, Textarea, Divider } from 'ant-design-vue'
+import { computed, onMounted } from 'vue'
+import { Row, Col, Flex, Form, Input, Divider } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
 import Title from '@/components/portfolio/Title.vue'
 import Subtitle from '@/components/portfolio/Subtitle.vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
 import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
 
-const properties = [
-  { name: 'email', value: '"ukhalid428@gmail.com"' },
-  { name: 'availability', value: '"open to projects"' },
-  { name: 'Location', value: '"Birmingham, UK"' },
-  { name: 'response_time', value: '"~24 hours"' },
-]
+import useProfileStore from '@/stores/profileStore.js'
+
+const profileStore = useProfileStore()
+
+onMounted(async () => {
+  await profileStore.fetchProfile()
+})
+
+const properties = computed(() => [
+  { name: 'email', value: profileStore.profile.email },
+  { name: 'availability', value: profileStore.profile.status },
+  { name: 'location', value: profileStore.profile.location },
+  { name: 'response_time', value: '~24 hours' },
+])
 </script>
 
 <template>
@@ -47,13 +56,21 @@ const properties = [
           <Subtitle :style="{ color: 'var(--accent)' }">Properties</Subtitle>
           <Flex v-for="property in properties" :key="property.name" vertical>
             <p class="property-name">{{ property.name }}</p>
-            <p class="property-value">{{ property.value }}</p>
+            <p class="property-value">"{{ property.value }}"</p>
           </Flex>
           <Divider :style="{ borderColor: 'var(--accent)', margin: '0' }" />
           <Flex vertical>
             <p class="property-name">Links</p>
-            <a href="/" class="property-value" :style="{ color: 'var(--accent)' }">./github</a
-            ><a href="/" class="property-value" :style="{ color: 'var(--accent)' }">./linkedin</a
+            <a
+              :href="profileStore.profile.github_url"
+              class="property-value"
+              :style="{ color: 'var(--accent)' }"
+              >./github</a
+            ><a
+              :href="profileStore.profile.linkedin_url"
+              class="property-value"
+              :style="{ color: 'var(--accent)' }"
+              >./linkedin</a
             ><a href="/" class="property-value" :style="{ color: 'var(--accent)' }">./read.cv</a>
           </Flex>
         </PropertiesCard>
