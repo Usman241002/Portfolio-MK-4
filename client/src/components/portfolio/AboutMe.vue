@@ -3,6 +3,10 @@ import { Flex } from 'ant-design-vue'
 import Title from '@/components/portfolio/Title.vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
+
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 </script>
 
 <template>
@@ -27,7 +31,7 @@ import { ArrowRightOutlined } from '@ant-design/icons-vue'
       ship. If it's worth building, it's worth building well.
     </p>
     <Flex gap="16"
-      ><BaseButton>Get in touch <ArrowRightOutlined /></BaseButton>
+      ><BaseButton @click="router.push('/contact')">Get in touch <ArrowRightOutlined /></BaseButton>
       <BaseButton variant="secondary">View CV</BaseButton></Flex
     >
   </Flex>

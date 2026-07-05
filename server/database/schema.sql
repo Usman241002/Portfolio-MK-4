@@ -144,7 +144,7 @@ INSERT INTO skills (name, level)
 VALUES ('Figma', '3 years');
 
 INSERT INTO profile (name, role, location, status, email, github_url, linkedin_url)
-VALUES ('Usman Khalid', 'Software Engineer', 'Birmingham, UK', 'open to work', 'ukhalid428@gmail.com', 'https://github.com/Usman241002', 'https://www.linkedin.com/in/usman-khalid-dev/');
+VALUES ('Usman Khalid', 'Software Engineer', 'Birmingham, UK', 'open to work', 'contact@ukhalid.dev', 'https://github.com/Usman241002', 'https://www.linkedin.com/in/usman-khalid-dev/');
 
 INSERT INTO experience
 (start_date, end_date, title, company, employment_type, location, description)

@@ -2,6 +2,10 @@
 import { Flex, Row, Col } from 'ant-design-vue'
 import Subtitle from '@/components/portfolio/Subtitle.vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
+
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 </script>
 
 <template>
@@ -23,8 +27,8 @@ import BaseButton from '@/components/portfolio/BaseButton.vue'
         </p>
 
         <Flex gap="16">
-          <BaseButton>Read more</BaseButton>
-          <BaseButton variant="secondary">Say Hello</BaseButton>
+          <BaseButton @click="router.push('/about')">Read more</BaseButton>
+          <BaseButton variant="secondary" @click="router.push('/contact')">Say Hello</BaseButton>
         </Flex></Flex
       >
     </Col>

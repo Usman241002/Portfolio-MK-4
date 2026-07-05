@@ -27,11 +27,7 @@ const items = [
   {
     title: 'Pages',
     icon: ArrowRightOutlined,
-    children: [
-      { title: 'Home', key: 4, icon: HomeOutlined, link: 'home' },
-      { title: 'About', key: 5, icon: InfoCircleOutlined, link: 'about' },
-      { title: 'Contact', key: 6, icon: MailOutlined, link: 'contact' },
-    ],
+    children: [{ title: 'Home', key: 4, icon: HomeOutlined, link: 'home' }],
   },
   {
     title: 'System',

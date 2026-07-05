@@ -10,8 +10,10 @@ import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
 import Cursor from '@/components/portfolio/Cursor.vue'
 
 import useProfileStore from '@/stores/profileStore'
+import { useRouter } from 'vue-router'
 
 const profileStore = useProfileStore()
+const router = useRouter()
 
 onMounted(async () => {
   await profileStore.fetchProfile()
@@ -46,7 +48,9 @@ const phrases = [
         </h1>
         <Cursor :phrases="phrases" />
         <Flex gap="16">
-          <BaseButton>Get in touch <ArrowRightOutlined /></BaseButton>
+          <BaseButton @click="router.push('/contact')"
+            >Get in touch <ArrowRightOutlined
+          /></BaseButton>
           <BaseButton variant="secondary">View CV</BaseButton>
         </Flex>
       </Flex>
@@ -70,7 +74,9 @@ const phrases = [
               "{{ profileStore.profile.status }}"
             </p>
           </Flex>
-          <BaseButton>Get in touch <ArrowRightOutlined /></BaseButton>
+          <BaseButton @click="router.push('/contact')"
+            >Get in touch <ArrowRightOutlined
+          /></BaseButton>
         </PropertiesCard> </Flex
     ></Col>
   </Row>

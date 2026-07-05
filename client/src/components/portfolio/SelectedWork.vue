@@ -5,6 +5,10 @@ import Subtitle from '@/components/portfolio/Subtitle.vue'
 import ProjectCard from '@/components/portfolio/ProjectCard.vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
 
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const projects = [
   {
     id: 1,
@@ -28,7 +32,7 @@ const projects = [
     </Row>
 
     <Flex justify="flex-end">
-      <BaseButton variant="secondary">
+      <BaseButton variant="secondary" @click="router.push('/projects')">
         View all projects
         <ArrowRightOutlined />
       </BaseButton>

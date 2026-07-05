@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { Row, Col, Flex, Form, Input, Divider } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
 import Title from '@/components/portfolio/Title.vue'
@@ -8,11 +8,19 @@ import BaseButton from '@/components/portfolio/BaseButton.vue'
 import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
 
 import useProfileStore from '@/stores/profileStore.js'
+import useContactStore from '@/stores/contactStore.js'
 
 const profileStore = useProfileStore()
+const contactStore = useContactStore()
 
 onMounted(async () => {
   await profileStore.fetchProfile()
+})
+
+const contactFormState = reactive({
+  name: '',
+  email: '',
+  message: '',
 })
 
 const properties = computed(() => [
@@ -21,6 +29,13 @@ const properties = computed(() => [
   { name: 'location', value: profileStore.profile.location },
   { name: 'response_time', value: '~24 hours' },
 ])
+
+async function onSubmit() {
+  await contactStore.sendContactForm(contactFormState)
+  contactFormState.name = ''
+  contactFormState.email = ''
+  contactFormState.message = ''
+}
 </script>
 
 <template>
@@ -32,22 +47,33 @@ const properties = computed(() => [
 
           <h2>Lets build something.</h2>
         </Flex>
-        <Form layout="vertical">
+        <Form layout="vertical" v-model="contactFormState" @finish="onSubmit">
           <Form.Item class="form-label" label="Full Name:">
-            <Input class="form-input" placeholder="Your name" />
+            <Input
+              class="form-input"
+              placeholder="Your name"
+              v-model:value="contactFormState.name"
+            />
           </Form.Item>
           <Form.Item class="form-label" label="Email:">
-            <Input class="form-input" placeholder="hello@you.com" />
+            <Input
+              class="form-input"
+              placeholder="hello@you.com"
+              v-model:value="contactFormState.email"
+            />
           </Form.Item>
           <Form.Item class="form-label" label="Message:">
             <Input.TextArea
               class="form-input"
               :style="{ height: '10rem' }"
               placeholder="Tell me about the project..."
+              v-model:value="contactFormState.message"
             />
           </Form.Item>
 
-          <BaseButton :style="{ width: '100%' }">Send Message <ArrowRightOutlined /></BaseButton>
+          <BaseButton :style="{ width: '100%' }" @click="onSubmit"
+            >Send Message <ArrowRightOutlined
+          /></BaseButton>
         </Form> </Flex
     ></Col>
     <Col :span="8">
