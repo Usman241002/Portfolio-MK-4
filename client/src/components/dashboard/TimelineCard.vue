@@ -70,7 +70,7 @@ defineProps({
           <Input.TextArea
             class="form-input"
             v-model:value="experience.description"
-            :style="{ height: '5rem' }"
+            :style="{ height: '5rem', resize: 'none' }"
           />
         </Form.Item>
       </Col>
@@ -78,4 +78,35 @@ defineProps({
   </Form>
 </template>
 
-<style scoped></style>
+<style scoped>
+:deep(.ant-form-item-label > label) {
+  font: var(--micro);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.form-input {
+  background: var(--bg);
+}
+
+:deep(.form-select .ant-select-selector) {
+  height: 2rem !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 0.75rem !important;
+}
+
+:deep(.form-select .ant-select-selection-item) {
+  line-height: 2rem !important;
+}
+
+:deep(.form-select .ant-select-selection-placeholder) {
+  line-height: 2rem !important;
+}
+
+:deep(.ant-form-item) {
+  margin-bottom: 0.25rem;
+}
+</style>

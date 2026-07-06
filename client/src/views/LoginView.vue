@@ -73,4 +73,26 @@ async function onSubmit(formState) {
 #login-subtitle {
   font: var(--body);
 }
+
+:deep(.ant-form-item-label > label) {
+  font: var(--micro);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.form-input {
+  width: 100%;
+  height: 2rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 0.5rem 0.75rem;
+  font: var(--body);
+  color: var(--text-primary);
+  transition: border-color 0.15s;
+}
+
+:deep(.ant-form-item) {
+  margin-bottom: 0.25rem;
+}
 </style>

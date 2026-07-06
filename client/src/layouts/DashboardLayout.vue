@@ -14,6 +14,7 @@ import SideNav from '@/components/dashboard/SideNav.vue'
       :style="{
         marginTop: '3.25rem',
         backgroundColor: 'var(--surface)',
+        border: '1px solid var(--border)',
       }"
     >
       <SideNav />

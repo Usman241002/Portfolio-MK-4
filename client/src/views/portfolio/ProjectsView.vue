@@ -66,8 +66,15 @@ watch(
     </Row>
     <Divider :style="{ border: '1px solid var(--border)' }" />
     <Row :gutter="[24, 24]">
-      <Col v-for="project in projects" :key="project.id" :xs="24" :sm="12" :lg="8">
-        <ProjectCard type="cover" :project="project" />
+      <Col
+        v-for="project in projects"
+        :key="project.id"
+        :xs="24"
+        :sm="12"
+        :lg="8"
+        style="display: flex"
+      >
+        <ProjectCard :project="project" type="cover" style="flex: 1; width: 100%" />
       </Col>
     </Row>
   </Flex>

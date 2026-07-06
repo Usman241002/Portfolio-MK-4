@@ -145,4 +145,8 @@ tbody tr:hover .actions {
 .grow {
   flex: 1;
 }
+
+.form-input {
+  background: var(--bg);
+}
 </style>

@@ -6,7 +6,7 @@ import ProfileForm from '@/components/dashboard/ProfileForm.vue'
 <template>
   <Flex class="dash-container" vertical>
     <Row :gutter="24">
-      <Col :span="2">
+      <Col class=".column" :span="2">
         <Flex vertical gap="8">
           <Flex
             align="center"
@@ -27,4 +27,35 @@ import ProfileForm from '@/components/dashboard/ProfileForm.vue'
   </Flex>
 </template>
 
-<style scoped></style>
+<style scoped>
+:deep(.ant-form-item-label > label) {
+  font: var(--micro);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.form-input {
+  background: var(--bg);
+}
+
+:deep(.form-select .ant-select-selector) {
+  height: 2rem !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 0.75rem !important;
+}
+
+:deep(.form-select .ant-select-selection-item) {
+  line-height: 2rem !important;
+}
+
+:deep(.form-select .ant-select-selection-placeholder) {
+  line-height: 2rem !important;
+}
+
+:deep(.ant-form-item) {
+  margin-bottom: 0.25rem;
+}
+</style>

@@ -1,14 +1,29 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Flex, Button } from 'ant-design-vue'
 import { EditOutlined, CloseOutlined } from '@ant-design/icons-vue'
 import useProjectsStore from '@/stores/projectsStore.js'
+import dayjs from 'dayjs'
+
+import ProjectModal from './ProjectModal.vue'
 
 const projectsStore = useProjectsStore()
+
+const isModalVisible = ref(false)
+const selectedProject = ref(null)
 
 onMounted(async () => {
   await projectsStore.getAllProjects()
 })
+
+const openEditModal = (project) => {
+  projectsStore.setCurrentProject(project)
+  isModalVisible.value = true
+}
+
+async function onDelete(id) {
+  await projectsStore.deleteProject(id)
+}
 </script>
 
 <template>
@@ -27,19 +42,34 @@ onMounted(async () => {
         <tr v-for="project in projectsStore.projects" :key="project.id">
           <td>{{ project.id }}</td>
           <td>{{ project.title }}</td>
-          <td>{{ project.user_id }}</td>
+          <td>{{ dayjs(project.year).format('YYYY') }}</td>
           <td>{{ project.status }}</td>
           <td>
             <Flex gap="8">
-              <Button :style="{ borderRadius: '0' }" type="primary" ghost><EditOutlined /></Button>
-              <Button :style="{ borderRadius: '0' }" type="primary" ghost danger
-                ><CloseOutlined
-              /></Button>
+              <Button
+                @click="openEditModal(project)"
+                :style="{ borderRadius: '0' }"
+                type="primary"
+                ghost
+              >
+                <EditOutlined />
+              </Button>
+              <Button
+                @click="onDelete(project.id)"
+                :style="{ borderRadius: '0' }"
+                type="primary"
+                ghost
+                danger
+              >
+                <CloseOutlined />
+              </Button>
             </Flex>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <ProjectModal v-model:modalVisible="isModalVisible" :project="selectedProject" />
   </Flex>
 </template>
 

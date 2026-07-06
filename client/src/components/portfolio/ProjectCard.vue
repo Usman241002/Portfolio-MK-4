@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Card, Flex } from 'ant-design-vue'
 import Badge from '@/components/portfolio/Badge.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const { project, type = 'standard' } = defineProps({
   type: String,
@@ -9,7 +12,7 @@ const { project, type = 'standard' } = defineProps({
 </script>
 
 <template>
-  <Card class="project-card">
+  <Card class="project-card" @click="router.push(`/projects/${project.id}`)">
     <template v-if="type === 'cover'" #cover>
       <img
         alt="example"
@@ -19,10 +22,12 @@ const { project, type = 'standard' } = defineProps({
     <Flex gap="8" vertical
       ><p class="project-id">project_{{ project.id }}.tsx</p>
       <h6 class="project-title">{{ project.title }}</h6>
-      <p class="project-description">{{ project.short_description }}</p>
+      <p class="project-description">{{ project.subtitle }}</p>
 
       <Flex gap="12">
-        <Badge v-for="tag in project.tags" :key="tag">{{ tag }}</Badge>
+        <Badge v-for="skill in project.skills" :key="skill">
+          {{ skill.name }}
+        </Badge>
       </Flex></Flex
     >
   </Card>

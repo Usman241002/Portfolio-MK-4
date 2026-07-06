@@ -32,7 +32,7 @@ function onRemove(id: number) {
         :key="exp.id"
       >
         <template #header>
-          <Flex justify="space-between" align="center">
+          <Flex justify="space-between" align="start">
             <p>
               <span>{{ exp.title }} - </span
               >{{ exp.start_date == '' ? null : dayjs(exp.start_date).format('MM-YYYY') }} →

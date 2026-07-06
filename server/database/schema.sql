@@ -26,15 +26,30 @@ CREATE TABLE profile (
 CREATE TABLE projects (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    short_description TEXT NOT NULL,
+    subtitle TEXT,
+    client TEXT NOT NULL,
+    role TEXT NOT NULL,
+    year DATE NOT NULL,
     description TEXT NOT NULL,
     status ENUM('ongoing', 'completed', 'archived') NOT NULL DEFAULT 'ongoing',
     repository_url VARCHAR(2048),
     live_demo_url VARCHAR(2048),
-    thumbnail VARCHAR(255),
+    deleted BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- PROJECT CASES
+CREATE TABLE project_cases (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    project_id INT NOT NULL,
+    heading VARCHAR(256),
+    subheading VARCHAR(256),
+    description TEXT,
+    stat VARCHAR(256),
+    stat_description VARCHAR(256)
+);
+
 
 -- -- PROJECT IMAGES
 -- CREATE TABLE project_images (
@@ -57,22 +72,22 @@ CREATE TABLE skills (
     level VARCHAR(255) NOT NULL
 );
 
--- -- PROJECT SKILLS (many-to-many)
--- CREATE TABLE project_skills (
---     project_id INT NOT NULL,
---     skill_id INT NOT NULL,
+-- PROJECT SKILLS (many-to-many)
+CREATE TABLE project_skills (
+    project_id INT NOT NULL,
+    skill_id INT NOT NULL,
 
---     PRIMARY KEY (project_id, skill_id),
+    PRIMARY KEY (project_id, skill_id),
 
---     CONSTRAINT fk_projectskills_project
---         FOREIGN KEY (project_id)
---         REFERENCES projects(id)
---         ON DELETE CASCADE,
---     CONSTRAINT fk_projectskills_skill
---         FOREIGN KEY (skill_id)
---         REFERENCES skills(id)
---         ON DELETE RESTRICT
--- );
+    CONSTRAINT fk_projectskills_project
+        FOREIGN KEY (project_id)
+        REFERENCES projects(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_projectskills_skill
+        FOREIGN KEY (skill_id)
+        REFERENCES skills(id)
+        ON DELETE RESTRICT
+);
 
 -- -- EDUCATION
 -- CREATE TABLE education (
@@ -108,13 +123,6 @@ CREATE TABLE experience (
     location VARCHAR(255) NOT NULL,
     description TEXT
 );
-
-INSERT INTO projects (title, short_description, description, status, repository_url, live_demo_url, thumbnail)
-VALUES ('Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
-INSERT INTO projects (title, short_description, description, status, repository_url, live_demo_url, thumbnail)
-VALUES ('Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
-INSERT INTO projects (title, short_description, description, status, repository_url, live_demo_url, thumbnail)
-VALUES ('Meridan Finance', 'Onboarding redesign that reduced drop-off by 38% and survived the compliance audit.', '', 'ongoing', '', '', '');
 
 INSERT INTO skills (name, level)
 VALUES ('React', '3 years');
@@ -154,3 +162,75 @@ VALUES
 ('2024-06-01', '2024-12-31', 'Frontend Developer Intern', 'Nova Labs', 'internship', 'London, UK', 'Built Vue.js dashboards and improved UI performance across internal tools.'),
 
 ('2023-01-01', '2024-05-31', 'Junior Web Developer', 'Freelance', 'freelance', 'Remote', 'Delivered full-stack web applications for small business clients using Vue, PHP, and Node.js.');
+
+INSERT INTO projects
+(title, subtitle, year, client, role, description, status, repository_url, live_demo_url)
+VALUES
+(
+ 'Meridian Finance',
+ 'Onboarding redesign that improved conversion and compliance flow',
+ "2026-01-01",
+ 'Meridian Finance',
+ 'Frontend Developer',
+ 'Worked on onboarding systems improving user conversion and compliance workflows.',
+ 'ongoing',
+ '',
+ ''
+);
+
+INSERT INTO project_skills(project_id, skill_id) VALUES (1, 1), (1, 2), (1, 3);
+
+INSERT INTO project_cases (project_id, heading, subheading, description, stat, stat_description)
+VALUES
+(
+    1,
+    'The Challenge',
+    'Simplifying a complex onboarding journey',
+    'The existing onboarding process required users to complete numerous forms across multiple screens, resulting in unnecessary friction, increased abandonment, and additional manual verification work.',
+    '12',
+    'screens consolidated into a streamlined onboarding flow'
+),
+(
+    1,
+    'Research & Discovery',
+    'Understanding where users dropped off',
+    'Analysed user behaviour, stakeholder feedback, and existing analytics to identify the highest-friction steps within the registration and identity verification process.
+
+This research highlighted that many users abandoned the journey before identity verification. We also found inconsistencies between desktop and mobile experiences that contributed to confusion.
+
+Working closely with designers and stakeholders, we prioritised the highest-impact improvements before implementation.',
+    '3',
+    'major bottlenecks identified before implementation'
+),
+(
+    1,
+    'The Solution',
+    'Building a modern onboarding experience',
+    'Developed reusable Vue components, improved validation logic, introduced progressive disclosure, and collaborated closely with backend engineers to simplify the verification workflow.',
+    '40%',
+    'reduction in duplicated frontend code'
+),
+(
+    1,
+    'Performance',
+    'Making every interaction feel faster',
+    'Optimised component rendering, reduced unnecessary API requests, and implemented lazy loading where appropriate to improve perceived performance.',
+    '55%',
+    'faster initial page load'
+),
+(
+    1,
+    'Accessibility',
+    'Creating an inclusive experience',
+    'Improved keyboard navigation, semantic HTML structure, focus management, and colour contrast to better meet WCAG accessibility guidelines.',
+    '100%',
+    'critical onboarding actions accessible via keyboard'
+),
+(
+    1,
+    'Outcome',
+    'A more efficient onboarding process',
+    'The redesigned experience reduced friction for new customers while making the application easier to maintain and extend with future onboarding requirements.',
+    'High',
+    'stakeholder satisfaction after release'
+);

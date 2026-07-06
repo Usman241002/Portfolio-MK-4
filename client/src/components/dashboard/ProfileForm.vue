@@ -43,7 +43,7 @@ onMounted(async () => {
             />
           </Form.Item> </Col
       ></Row>
-      <Subtitle>Contacts and links</Subtitle>
+      <Subtitle :style="{ marginTop: '0.75rem' }">Contacts and links</Subtitle>
       <Divider :style="{ margin: '0.75rem', border: '1px solid var(--border)' }" />
       <Row :gutter="24">
         <Col :span="12">

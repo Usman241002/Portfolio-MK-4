@@ -65,7 +65,7 @@ async function onSubmit() {
           <Form.Item class="form-label" label="Message:">
             <Input.TextArea
               class="form-input"
-              :style="{ height: '10rem' }"
+              :style="{ height: '10rem', resize: 'none' }"
               placeholder="Tell me about the project..."
               v-model:value="contactFormState.message"
             />
@@ -120,6 +120,6 @@ h2 {
 .property-value {
   font: var(--body);
   color: var(--text-primary);
-  font-weight: 700;
+  font-weight: 300;
 }
 </style>

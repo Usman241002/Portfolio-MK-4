@@ -5,6 +5,7 @@ import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
 import HomeView from '@/views/portfolio/HomeView.vue'
 import ProjectsView from '@/views/portfolio/ProjectsView.vue'
+import ProjectView from '@/views/portfolio/ProjectView.vue'
 import AboutView from '@/views/portfolio/AboutView.vue'
 import ContactView from '@/views/portfolio/ContactView.vue'
 
@@ -39,6 +40,11 @@ const router = createRouter({
           path: 'projects',
           name: 'projects',
           component: ProjectsView,
+        },
+        {
+          path: 'projects/:id',
+          name: 'project',
+          component: ProjectView,
         },
         {
           path: 'about',
