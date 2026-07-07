@@ -51,6 +51,7 @@ const { project, type = 'standard' } = defineProps({
 
 .project-id {
   font: var(--micro);
+  letter-spacing: var(--micro-tracking);
   text-transform: lowercase;
   color: var(--accent);
 }

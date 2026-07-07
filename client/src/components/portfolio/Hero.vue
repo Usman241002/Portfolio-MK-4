@@ -10,13 +10,18 @@ import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
 import Cursor from '@/components/portfolio/Cursor.vue'
 
 import useProfileStore from '@/stores/profileStore'
+import useProjectsStore from '@/stores/projectsStore'
+
 import { useRouter } from 'vue-router'
 
 const profileStore = useProfileStore()
+const projectsStore = useProjectsStore()
+
 const router = useRouter()
 
 onMounted(async () => {
   await profileStore.fetchProfile()
+  await projectsStore.getAllProjects()
 })
 
 const properties = computed(() => [
@@ -58,14 +63,14 @@ const phrases = [
     <Col :span="4" />
     <Col :span="6"
       ><Flex class="container" align="end" gap="16" vertical>
-        <StatCard title="4" desc="total projects" /><StatCard
+        <StatCard :title="projectsStore.projects.length" desc="total projects" /><StatCard
           title="4yr"
           desc="programming experience"
         /><PropertiesCard>
           <Subtitle :style="{ color: 'var(--accent)' }">Properties</Subtitle>
           <Flex v-for="property in properties" :key="property.name" vertical>
             <p class="property-name">{{ property.name }}</p>
-            <p class="property-value">{{ property.value }}</p>
+            <p class="property-value">"{{ property.value }}"</p>
           </Flex>
           <Divider :style="{ borderColor: 'var(--accent)', margin: '0' }" />
           <Flex vertical>
@@ -85,6 +90,7 @@ const phrases = [
 <style>
 .hero {
   font: var(--display-xl);
+  letter-spacing: var(--display-xl-tracking);
   color: var(--text-primary);
 }
 
@@ -94,6 +100,7 @@ const phrases = [
 
 .property-name {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   color: var(--text-secondary);
   text-transform: lowercase;
 }

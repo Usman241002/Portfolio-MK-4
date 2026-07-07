@@ -40,6 +40,7 @@ const router = useRouter()
 <style scoped>
 .heading {
   font: var(--heading-lg);
+  letter-spacing: var(--heading-lg-tracking);
 }
 
 .about-me-body {

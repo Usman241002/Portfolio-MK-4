@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { API_URL } from '@/config.js'
 import useAuthStore from '@/stores/authStore.js'
+import { api } from '../router/fetch'
 
 const skillsStore = defineStore('skills', () => {
   const authStore = useAuthStore()
@@ -26,7 +27,7 @@ const skillsStore = defineStore('skills', () => {
 
   async function addSkill(skillForm) {
     try {
-      const response = await fetch(`${API_URL}/skills`, {
+      const response = await api(`${API_URL}/skills`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${authStore.token}`,
@@ -52,7 +53,7 @@ const skillsStore = defineStore('skills', () => {
 
   async function deleteSkill(skillId) {
     try {
-      const response = await fetch(`${API_URL}/skills/${skillId}`, {
+      const response = await api(`${API_URL}/skills/${skillId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${authStore.token}`,

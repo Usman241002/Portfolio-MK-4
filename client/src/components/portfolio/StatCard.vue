@@ -24,10 +24,12 @@ const props = defineProps({
 
 .stat-card h2 {
   font: var(--heading-lg);
+  letter-spacing: var(--heading-lg-tracking);
 }
 
 .stat-card p {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   color: var(--text-secondary);
   text-transform: uppercase;
 }

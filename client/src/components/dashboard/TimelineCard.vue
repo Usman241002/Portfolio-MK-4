@@ -4,13 +4,80 @@ import { Form, Input, Row, Col, Select, DatePicker } from 'ant-design-vue'
 defineProps({
   experience: Object,
 })
+
+const rules = {
+  start_date: [
+    {
+      required: true,
+      message: 'Please select a start date',
+    },
+    {
+      type: 'date',
+      message: 'Please select a valid start date',
+    },
+  ],
+
+  end_date: [
+    {
+      type: 'date',
+      message: 'Please select a valid end date',
+    },
+  ],
+
+  title: [
+    {
+      required: true,
+      message: 'Please enter a job title',
+    },
+    {
+      max: 255,
+      message: 'Title cannot exceed 255 characters',
+    },
+  ],
+
+  company: [
+    {
+      required: true,
+      message: 'Please enter a company name',
+    },
+    {
+      max: 255,
+      message: 'Company name cannot exceed 255 characters',
+    },
+  ],
+
+  employment_type: [
+    {
+      required: true,
+      message: 'Please select an employment type',
+    },
+  ],
+
+  location: [
+    {
+      required: true,
+      message: 'Please enter a location',
+    },
+    {
+      max: 255,
+      message: 'Location cannot exceed 255 characters',
+    },
+  ],
+
+  description: [
+    {
+      max: 1000,
+      message: 'Description cannot exceed 1000 characters',
+    },
+  ],
+}
 </script>
 
 <template>
-  <Form layout="vertical">
+  <Form layout="vertical" :model="experience" :rules="rules">
     <Row :gutter="12">
       <Col :span="6">
-        <Form.Item class="form-label" label="Start Date">
+        <Form.Item class="form-label" name="start_date" label="Start Date">
           <DatePicker
             class="form-input"
             format="MM-YYYY"
@@ -21,7 +88,7 @@ defineProps({
       </Col>
 
       <Col :span="6">
-        <Form.Item class="form-label" label="End Date">
+        <Form.Item class="form-label" name="end_date" label="End Date">
           <DatePicker
             class="form-input"
             format="MM-YYYY"
@@ -35,13 +102,13 @@ defineProps({
       <Col :span="12" />
 
       <Col :span="12">
-        <Form.Item class="form-label" label="Title">
+        <Form.Item class="form-label" name="title" label="Title">
           <Input class="form-input" v-model:value="experience.title" />
         </Form.Item>
       </Col>
 
       <Col :span="12">
-        <Form.Item class="form-label" label="Employment Type">
+        <Form.Item class="form-label" name="employment_type" label="Employment Type">
           <Select
             v-model:value="experience.employment_type"
             class="form-select"
@@ -56,17 +123,17 @@ defineProps({
         </Form.Item>
       </Col>
       <Col :span="12">
-        <Form.Item class="form-label" label="Company">
+        <Form.Item class="form-label" name="company" label="Company">
           <Input class="form-input" v-model:value="experience.company" />
         </Form.Item>
       </Col>
       <Col :span="12">
-        <Form.Item class="form-label" label="Location">
+        <Form.Item class="form-label" name="location" label="Location">
           <Input class="form-input" v-model:value="experience.location" />
         </Form.Item>
       </Col>
       <Col :span="24">
-        <Form.Item class="form-label" label="Description">
+        <Form.Item class="form-label" name="description" label="Description">
           <Input.TextArea
             class="form-input"
             v-model:value="experience.description"
@@ -81,6 +148,7 @@ defineProps({
 <style scoped>
 :deep(.ant-form-item-label > label) {
   font: var(--micro);
+  letter-spacing: var(--micro-tracking);
   color: var(--text-secondary);
   text-transform: uppercase;
 }

@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   font-size: 0.75rem;
   padding: 0.75rem 2rem;
   text-transform: uppercase;

@@ -1,0 +1,304 @@
+{
+  "definitions": {
+    "getAllProjects": {
+      "id": "getAllProjects",
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "getProject": {
+      "id": "getProject",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "addProject": {
+      "id": "addProject",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "client": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "descriptionription": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ongoing", "completed", "archived"]
+        },
+        "repository_url": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "live_demo_url": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1
+              },
+              "subheading": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "stat": {
+                "type": "string",
+                "minLength": 1
+              },
+              "stat_description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "heading",
+              "subheading",
+              "description",
+              "stat",
+              "stat_description"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "title",
+        "subtitle",
+        "client",
+        "role",
+        "year",
+        "descriptionription",
+        "status",
+        "skill_ids"
+      ],
+      "additionalProperties": true
+    },
+    "updateProject": {
+      "id": "updateProject",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "client": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "descriptionription": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ongoing", "completed", "archived"]
+        },
+        "repository_url": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "live_demo_url": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": ["id", "name"],
+            "additionalProperties": false
+          }
+        },
+        "skill_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "heading": {
+                "type": "string",
+                "minLength": 1
+              },
+              "subheading": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "stat": {
+                "type": "string",
+                "minLength": 1
+              },
+              "stat_description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "subtitle",
+        "client",
+        "role",
+        "year",
+        "description",
+        "status",
+        "skills",
+        "cases",
+        "skill_ids"
+      ],
+      "additionalProperties": true
+    },
+    "deleteProject": {
+      "id": "deleteProject",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  }
+}

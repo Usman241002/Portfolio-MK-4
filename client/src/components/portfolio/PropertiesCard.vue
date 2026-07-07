@@ -23,10 +23,12 @@ const props = defineProps({
 
 .properties-card h2 {
   font: var(--heading-lg);
+  letter-spacing: var(--heading-lg-tracking);
 }
 
 .properties-card p {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   color: var(--text-secondary);
   text-transform: uppercase;
 }

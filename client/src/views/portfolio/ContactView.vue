@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive } from 'vue'
-import { Row, Col, Flex, Form, Input, Divider } from 'ant-design-vue'
+import { Row, Col, Flex, Form, Input, Divider, message } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
 import Title from '@/components/portfolio/Title.vue'
 import Subtitle from '@/components/portfolio/Subtitle.vue'
@@ -22,6 +22,29 @@ const contactFormState = reactive({
   email: '',
   message: '',
 })
+
+const rules = {
+  name: [
+    { required: true, message: 'Please enter your full name' },
+    { min: 4, message: 'Name must be more than 4 characters' },
+    { max: 20, message: 'Too many characters!' },
+  ],
+  email: [
+    { required: true, message: 'Please enter your email' },
+    {
+      type: 'email',
+      message: 'Please enter a valid email',
+    },
+    { max: 100, message: 'Too many characters!' },
+  ],
+  message: [
+    { required: true, message: 'Please enter your message' },
+    {
+      max: 1000,
+      message: 'Too many characters!',
+    },
+  ],
+}
 
 const properties = computed(() => [
   { name: 'email', value: profileStore.profile.email },
@@ -47,22 +70,22 @@ async function onSubmit() {
 
           <h2>Lets build something.</h2>
         </Flex>
-        <Form layout="vertical" v-model="contactFormState" @finish="onSubmit">
-          <Form.Item class="form-label" label="Full Name:">
+        <Form :model="contactFormState" :rules="rules" @finish="onSubmit" layout="vertical">
+          <Form.Item class="form-label" name="name" label="Full Name:">
             <Input
               class="form-input"
               placeholder="Your name"
               v-model:value="contactFormState.name"
             />
           </Form.Item>
-          <Form.Item class="form-label" label="Email:">
+          <Form.Item class="form-label" name="email" label="Email:">
             <Input
               class="form-input"
               placeholder="hello@you.com"
               v-model:value="contactFormState.email"
             />
           </Form.Item>
-          <Form.Item class="form-label" label="Message:">
+          <Form.Item class="form-label" name="message" label="Message:">
             <Input.TextArea
               class="form-input"
               :style="{ height: '10rem', resize: 'none' }"
@@ -107,12 +130,15 @@ async function onSubmit() {
 
 <style scoped>
 h2 {
-  color: var(--text-primary);
   font: var(--heading-lg);
+  letter-spacing: var(--heading-lg-tracking);
+  color: var(--text-primary);
 }
 
 .property-name {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
+  letter-spacing: var(--label-tracking);
   color: var(--text-secondary);
   text-transform: lowercase;
 }
@@ -120,6 +146,6 @@ h2 {
 .property-value {
   font: var(--body);
   color: var(--text-primary);
-  font-weight: 300;
+  font-weight: 700;
 }
 </style>

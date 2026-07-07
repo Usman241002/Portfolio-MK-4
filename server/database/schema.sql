@@ -10,16 +10,13 @@ DROP TABLE IF EXISTS profile;
 
 -- PROFILE
 CREATE TABLE profile (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     role VARCHAR(255),
     location VARCHAR(255),
     status ENUM('open to work', 'selective projects', "not available") NOT NULL DEFAULT 'open to work',
     email VARCHAR(255),
     github_url VARCHAR(2048),
-    linkedin_url VARCHAR(2048),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    linkedin_url VARCHAR(2048)
 );
 
 -- PROJECTS
@@ -29,7 +26,7 @@ CREATE TABLE projects (
     subtitle TEXT,
     client TEXT NOT NULL,
     role TEXT NOT NULL,
-    year DATE NOT NULL,
+    year YEAR NOT NULL,
     description TEXT NOT NULL,
     status ENUM('ongoing', 'completed', 'archived') NOT NULL DEFAULT 'ongoing',
     repository_url VARCHAR(2048),
@@ -169,7 +166,7 @@ VALUES
 (
  'Meridian Finance',
  'Onboarding redesign that improved conversion and compliance flow',
- "2026-01-01",
+ "2026",
  'Meridian Finance',
  'Frontend Developer',
  'Worked on onboarding systems improving user conversion and compliance workflows.',

@@ -1,0 +1,39 @@
+{
+  "definitions": {
+    "getAllSkills": {
+      "id": "getAllSkills",
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "addSkill": {
+      "id": "addSkill",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "String",
+          "minLength": 0
+        },
+        "level": {
+          "type": "String",
+          "minLength": 4
+        }
+      },
+      "required": ["name", "level"],
+      "additionalProperties": false
+    },
+    "removeSkill": {
+      "id": "removeSkill",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "String",
+          "minLength": 0
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  }
+}

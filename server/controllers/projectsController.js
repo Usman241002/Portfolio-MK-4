@@ -40,6 +40,7 @@ export async function getProject(ctx) {
 
 export async function addProject(ctx) {
   try {
+    console.log(ctx.request.body);
     const projectId = await projectsModel.addProject(ctx.request.body);
 
     if (!projectId) {
@@ -49,8 +50,6 @@ export async function addProject(ctx) {
     }
 
     const project = await projectsModel.getProjectById(projectId);
-
-    console.log(project);
 
     ctx.status = 201;
     ctx.body = { message: "Project added successfully", project };

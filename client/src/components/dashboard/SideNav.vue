@@ -6,8 +6,6 @@ import {
   FolderOpenOutlined,
   UserOutlined,
   HomeOutlined,
-  InfoCircleOutlined,
-  MailOutlined,
   SettingOutlined,
 } from '@ant-design/icons-vue'
 
@@ -81,6 +79,7 @@ function onClick(link: string, key: number) {
 
 .group h3 {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   margin-bottom: 0.375rem;
   padding: 0 1rem;

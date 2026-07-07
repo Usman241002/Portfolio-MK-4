@@ -8,8 +8,11 @@ import BaseButton from '@/components/portfolio/BaseButton.vue'
 import ProjectsTable from '@/components/dashboard/ProjectsTable.vue'
 import ProjectModal from '@/components/dashboard/ProjectModal.vue'
 
-const isModalVisible = ref(false)
+import useProjectsStore from '@/stores/projectsStore.js'
 
+const projectsStore = useProjectsStore()
+
+const isModalVisible = ref(false)
 const openCreateModal = () => {
   projectsStore.resetCurrentProject() // Ensure form is empty
   isModalVisible.value = true // Show the modal

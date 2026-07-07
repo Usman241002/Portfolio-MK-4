@@ -46,6 +46,7 @@ defineProps<{
 
 .timeline {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   color: var(--accent);
   margin-top: 0.2rem;
 }

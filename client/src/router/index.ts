@@ -124,14 +124,16 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const auth = useAuthStore(pinia)
 
-  if (to.meta.requiresAuth) {
-    if (auth.isLoggedIn) {
-      next()
-    } else {
-      next('/login')
-    }
-  } else {
+  if (!to.meta.requiresAuth) {
+    return next()
+  }
+
+  try {
+    await auth.verifyToken()
     next()
+  } catch (err) {
+    auth.logout()
+    next('/login')
   }
 })
 

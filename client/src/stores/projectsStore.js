@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { API_URL } from '@/config.js'
+import { api } from '../router/fetch'
 import useAuthStore from '@/stores/authStore.js'
 
 export const useProjectsStore = defineStore('projects', () => {
@@ -58,7 +59,7 @@ export const useProjectsStore = defineStore('projects', () => {
 
   async function addProject() {
     try {
-      const response = await fetch(`${API_URL}/projects`, {
+      const response = await api(`${API_URL}/projects`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +79,7 @@ export const useProjectsStore = defineStore('projects', () => {
 
   async function updateProject() {
     try {
-      const response = await fetch(`${API_URL}/projects/${currentProject.value.id}`, {
+      const response = await api(`${API_URL}/projects/${currentProject.value.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +102,7 @@ export const useProjectsStore = defineStore('projects', () => {
 
   async function deleteProject(id) {
     try {
-      const response = await fetch(`${API_URL}/projects/${id}`, {
+      const response = await api(`${API_URL}/projects/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

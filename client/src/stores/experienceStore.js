@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { API_URL } from '@/config.js'
+import { api } from '../router/fetch'
 import useAuthStore from '@/stores/authStore.js'
 
 const useExperienceStore = defineStore('experience', () => {
@@ -46,7 +47,7 @@ const useExperienceStore = defineStore('experience', () => {
 
   async function updateExperience() {
     try {
-      const response = await fetch(`${API_URL}/experience`, {
+      const response = await api(`${API_URL}/experience`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${authStore.token}`,

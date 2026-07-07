@@ -48,6 +48,7 @@ defineProps({
 <style scoped>
 :deep(.ant-form-item-label > label) {
   font: var(--micro);
+  letter-spacing: var(--micro-tracking);
   color: var(--text-secondary);
   text-transform: uppercase;
 }

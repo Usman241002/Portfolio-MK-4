@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import { API_URL } from '@/config.js'
 
 const useContactStore = defineStore('contact', () => {

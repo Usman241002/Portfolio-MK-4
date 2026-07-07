@@ -82,8 +82,9 @@ watch(
 
 <style scoped>
 h2 {
-  color: var(--text-primary);
   font: var(--heading-lg);
+  letter-spacing: var(--heading-lg-tracking);
+  color: var(--text-primary);
 }
 
 h4 {

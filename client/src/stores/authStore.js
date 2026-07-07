@@ -43,6 +43,25 @@ const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function verifyToken() {
+    try {
+      console.log('TRIGGER')
+      const response = await fetch(`${API_URL}/auth/verify`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error('Invalid token')
+      }
+    } catch (error) {
+      console.error(error)
+      throw Error(error.message)
+    }
+  }
+
   function logout() {
     token.value = null
 
@@ -65,7 +84,7 @@ const useAuthStore = defineStore('auth', () => {
 
   hydrate()
 
-  return { token, isLoggedIn, setUser, login, logout }
+  return { token, isLoggedIn, setUser, login, verifyToken, logout }
 })
 
 export default useAuthStore

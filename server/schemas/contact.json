@@ -1,0 +1,27 @@
+{
+  "definitions": {
+    "handleContact": {
+      "id": "handleContact",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 20
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 100
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": ["name", "email", "message"],
+      "additionalProperties": false
+    }
+  }
+}

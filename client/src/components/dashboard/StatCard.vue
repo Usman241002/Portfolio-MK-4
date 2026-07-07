@@ -25,6 +25,7 @@ const props = defineProps({
 
 .stat-card p {
   font: var(--heading-lg);
+  letter-spacing: var(--heading-lg-tracking);
   color: var(--text-primary);
   text-transform: uppercase;
 }

@@ -1,0 +1,70 @@
+{
+  "definitions": {
+    "getExperience": {
+      "id": "getExperience",
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "updateExperience": {
+      "id": "updateExperience",
+      "type": "object",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": ["string", "null"],
+            "format": "date"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "company": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "employment_type": {
+            "type": "string",
+            "enum": [
+              "full-time",
+              "part-time",
+              "internship",
+              "contract",
+              "freelance"
+            ]
+          },
+          "location": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 65535
+          }
+        },
+        "required": [
+          "id",
+          "start_date",
+          "title",
+          "company",
+          "employment_type",
+          "location"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

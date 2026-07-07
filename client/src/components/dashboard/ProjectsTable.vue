@@ -90,6 +90,7 @@ td {
 
 th {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   text-transform: uppercase;
 }
 

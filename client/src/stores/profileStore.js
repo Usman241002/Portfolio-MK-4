@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { defineStore } from 'pinia'
 import { API_URL } from '@/config.js'
+import { api } from '../router/fetch'
 import useAuthStore from '@/stores/authStore.js'
 
 const useProfileStore = defineStore('profile', () => {
@@ -37,7 +38,7 @@ const useProfileStore = defineStore('profile', () => {
 
   async function updateProfile() {
     try {
-      const response = await fetch(`${API_URL}/profile`, {
+      const response = await api(`${API_URL}/profile`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${authStore.token}`,

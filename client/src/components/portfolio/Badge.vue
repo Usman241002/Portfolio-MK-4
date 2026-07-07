@@ -19,6 +19,7 @@
 
 .badge-text {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   font-weight: 300;
   text-transform: uppercase;
   color: var(--accent);

@@ -4,15 +4,22 @@
 
   /* Display */
   --display-xl: 700 clamp(52px, 7vw, 92px)/0.93 var(--font-mono);
+  --display-xl-tracking: -0.03em;
 
   /* Headings */
   --heading-lg: 700 32px/1.2 var(--font-mono);
+  --heading-lg-tracking: -0.02em;
+
   --heading-md: 700 22px/1.2 var(--font-mono);
+  --heading-md-tracking: -0.02em;
 
   /* Body */
-  --body: 300 14px/1.8 var(--font-mono);
+  --body: 300 15px/1.8 var(--font-mono);
 
   /* Labels */
   --label: 600 11px/1.2 var(--font-mono);
+  --label-tracking: 0.12em;
+
   --micro: 600 10px/1.2 var(--font-mono);
+  --micro-tracking: 0.15em;
 }

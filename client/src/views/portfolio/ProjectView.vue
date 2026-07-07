@@ -87,6 +87,7 @@ const properties = computed(() => [
 <style scoped>
 .hero h2 {
   font: var(--heading-lg);
+  letter-spacing: var(--heading-lg-tracking);
   color: var(--text-primary);
 }
 
@@ -97,6 +98,7 @@ const properties = computed(() => [
 
 .property-name {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   color: var(--text-secondary);
   text-transform: lowercase;
 }
@@ -109,6 +111,7 @@ const properties = computed(() => [
 
 .case h5 {
   font: var(--heading-md);
+  letter-spacing: var(--heading-md-tracking);
   color: var(--text-primary);
 }
 
@@ -119,11 +122,11 @@ const properties = computed(() => [
 
 .case-heading {
   position: sticky;
-  top: 80px; /* adjust depending on your navbar/header */
+  top: 5rem;
   align-self: flex-start;
   height: fit-content;
   z-index: 2;
-  background: var(--background); /* important to avoid overlap issues */
-  padding-bottom: 8px;
+  background: var(--background);
+  padding-bottom: 0.5rem;
 }
 </style>

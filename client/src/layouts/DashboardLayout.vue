@@ -40,6 +40,7 @@ import SideNav from '@/components/dashboard/SideNav.vue'
 
 .footer {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   text-align: center;
   text-transform: uppercase;
   color: var(--text-secondary);

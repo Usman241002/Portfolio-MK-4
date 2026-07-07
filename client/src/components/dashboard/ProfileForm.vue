@@ -9,10 +9,32 @@ const profileStore = useProfileStore()
 onMounted(async () => {
   await profileStore.fetchProfile()
 })
+
+const rules = {
+  name: [
+    { required: true, message: 'Please enter your name' },
+    { min: 4, message: 'Name must be more that 4 characters' },
+  ],
+  role: [
+    { required: true, message: 'Please enter your role' },
+    { min: 4, message: 'Role must be more that 4 characters' },
+  ],
+  location: [
+    { required: true, message: 'Please enter your location' },
+    { min: 4, message: 'Role must be more than 4 characters' },
+  ],
+  status: [{ required: true, message: 'Please select your status' }],
+  email: [
+    { required: true, message: 'Please enter your email' },
+    { type: 'email', message: 'Please enter a valid email' },
+  ],
+  github_url: [{ min: 10, message: 'URL must be more than 10 characters' }],
+  linkedin_url: [{ min: 10, message: 'URL must be more than 10 characters' }],
+}
 </script>
 
 <template>
-  <Form :model="profileStore.profile" layout="vertical">
+  <Form :model="profileStore.profile" :rules="rules" layout="vertical">
     <Flex vertical>
       <Subtitle>Basic Info</Subtitle>
       <Divider :style="{ margin: '0.75rem', border: '1px solid var(--border)' }" />

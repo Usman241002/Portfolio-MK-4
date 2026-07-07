@@ -45,6 +45,7 @@ onMounted(async () => {
 }
 .skill-level {
   font: var(--label);
+  letter-spacing: var(--label-tracking);
   color: var(--text-secondary);
 }
 </style>

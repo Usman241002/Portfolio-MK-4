@@ -60,7 +60,8 @@ async function onSave() {
       padding: '0  var(--space-md)',
       border: '1px solid var(--border)',
       textTransform: 'uppercase',
-      font: 'var(--body)',
+      font: 'var(--label)',
+      letterSpacing: 'var(--label-tracking)',
       lineHeight: '2.5rem',
     }"
   />

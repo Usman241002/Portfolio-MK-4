@@ -25,5 +25,6 @@ const { title } = defineProps<{ title: string }>()
 <style scoped>
 .header-title {
   font: var(--heading-md);
+  letter-spacing: var(--heading-md-tracking);
 }
 </style>

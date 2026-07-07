@@ -46,6 +46,7 @@ async function onLogout() {
 
 #logo h1 {
   font: var(--heading-md);
+  letter-spacing: var(--heading-md-tracking);
   font-weight: 700;
   text-transform: uppercase;
   color: var(--bg);
