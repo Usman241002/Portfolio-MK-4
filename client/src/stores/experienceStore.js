@@ -12,7 +12,7 @@ const useExperienceStore = defineStore('experience', () => {
   async function fetchExperience() {
     try {
       loading.value = true
-      const response = await fetch(`${API_URL}/experience`)
+      const response = await fetch(`${API_URL}/api/experience`)
       const data = await response.json()
 
       if (!response.ok) {
@@ -52,7 +52,7 @@ const useExperienceStore = defineStore('experience', () => {
   async function updateExperience() {
     try {
       loading.value = true
-      const response = await api(`${API_URL}/experience`, {
+      const response = await api(`${API_URL}/api/experience`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${authStore.token}`,

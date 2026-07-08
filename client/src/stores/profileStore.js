@@ -20,7 +20,7 @@ const useProfileStore = defineStore('profile', () => {
   async function fetchProfile() {
     try {
       loading.value = true
-      const response = await fetch(`${API_URL}/profile`, {
+      const response = await fetch(`${API_URL}/api/profile`, {
         headers: {
           Authorization: `Bearer ${authStore.token}`,
         },
@@ -43,7 +43,7 @@ const useProfileStore = defineStore('profile', () => {
   async function updateProfile() {
     try {
       loading.value = true
-      const response = await api(`${API_URL}/profile`, {
+      const response = await api(`${API_URL}/api/profile`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${authStore.token}`,

@@ -24,7 +24,7 @@ const useAuthStore = defineStore('auth', () => {
   async function login(formState) {
     try {
       loading.value = true
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const useAuthStore = defineStore('auth', () => {
   async function verifyToken() {
     try {
       console.log('TRIGGER')
-      const response = await fetch(`${API_URL}/auth/verify`, {
+      const response = await fetch(`${API_URL}/api/auth/verify`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token.value}`,

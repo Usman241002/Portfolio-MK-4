@@ -13,7 +13,7 @@ const skillsStore = defineStore('skills', () => {
   async function getSkills() {
     try {
       loading.value = true
-      const response = await fetch(`${API_URL}/skills`)
+      const response = await fetch(`${API_URL}/api/skills`)
       const data = await response.json()
 
       if (!response.ok) {
@@ -32,7 +32,7 @@ const skillsStore = defineStore('skills', () => {
   async function addSkill(skillForm) {
     try {
       loading.value = true
-      const response = await api(`${API_URL}/skills`, {
+      const response = await api(`${API_URL}/api/skills`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${authStore.token}`,
@@ -61,7 +61,7 @@ const skillsStore = defineStore('skills', () => {
   async function deleteSkill(skillId) {
     try {
       loading.value = true
-      const response = await api(`${API_URL}/skills/${skillId}`, {
+      const response = await api(`${API_URL}/api/skills/${skillId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${authStore.token}`,

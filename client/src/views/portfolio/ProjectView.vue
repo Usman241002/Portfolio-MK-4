@@ -8,7 +8,7 @@ import Badge from '@/components/portfolio/Badge.vue'
 import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
 import dayjs from 'dayjs'
 import CaseStat from '@/components/portfolio/CaseStat.vue'
-import {  IMAGE_URL } from '@/config.js'
+import {  API } from '@/config.js'
 
 const route = useRoute()
 const projectsStore = useProjectsStore()
@@ -67,7 +67,7 @@ const properties = computed(() => [
 
     <Flex v-if="project.thumbnail">
       <Divider :style="{ border: '1px solid var(--border)' }" />
-      <img :src="`${IMAGE_URL}${project.thumbnail}`" />
+      <img :src="`${API_URL}${project.thumbnail}`" />
     </Flex>
 
     <Row v-for="caseItem in project.cases" :key="caseItem.id">

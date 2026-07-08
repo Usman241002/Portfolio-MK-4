@@ -7,7 +7,7 @@ const useContactStore = defineStore('contact', () => {
   async function sendContactForm(formState) {
     try {
       loading.value = true
-      const response = await fetch(`${API_URL}/contact`, {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

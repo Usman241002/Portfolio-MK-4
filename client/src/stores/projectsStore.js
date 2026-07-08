@@ -38,7 +38,7 @@ export const useProjectsStore = defineStore('projects', () => {
   async function getAllProjects() {
     try {
       loading.value = true
-      const response = await fetch(`${API_URL}/projects`)
+      const response = await fetch(`${API_URL}/api/projects`)
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Failed to fetch projects')
       projects.value = data
@@ -53,7 +53,7 @@ export const useProjectsStore = defineStore('projects', () => {
   async function getProjectById(projectId) {
     try {
       loading.value = true
-      const response = await fetch(`${API_URL}/projects/${projectId}`)
+      const response = await fetch(`${API_URL}/api/projects/${projectId}`)
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Failed to fetch project')
       return data
@@ -72,7 +72,7 @@ export const useProjectsStore = defineStore('projects', () => {
       const payload = { ...currentProject.value }
       delete payload.thumbnail
 
-      const response = await api(`${API_URL}/projects`, {
+      const response = await api(`${API_URL}/api/projects`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ export const useProjectsStore = defineStore('projects', () => {
       const payload = { ...currentProject.value }
       delete payload.thumbnail
 
-      const response = await api(`${API_URL}/projects/${currentProject.value.id}`, {
+      const response = await api(`${API_URL}/api/projects/${currentProject.value.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ export const useProjectsStore = defineStore('projects', () => {
   async function deleteProject(id) {
     try {
       loading.value = true
-      const response = await api(`${API_URL}/projects/${id}`, {
+      const response = await api(`${API_URL}/api/projects/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ export const useProjectsStore = defineStore('projects', () => {
 
       formData.append('thumbnail', image)
 
-      const response = await api(`${API_URL}/projects/${projectId}/thumbnail`, {
+      const response = await api(`${API_URL}/api/projects/${projectId}/thumbnail`, {
         method: httpMethod,
         headers: {
           Authorization: `Bearer ${authStore.token}`,

@@ -2,7 +2,7 @@
 import { Card, Flex } from 'ant-design-vue'
 import Badge from '@/components/portfolio/Badge.vue'
 import { useRouter } from 'vue-router'
-import {  IMAGE_URL } from '@/config.js'
+import {  API_URL } from '@/config.js'
 
 const router = useRouter()
 
@@ -15,7 +15,7 @@ const { project, type = 'standard' } = defineProps({
 <template>
   <Card class="project-card" @click="router.push(`/projects/${project.id}`)">
     <template v-if="type === 'cover' && project.thumbnail" #cover>
-      <img alt="example" :src="`${IMAGE_URL}${project.thumbnail}`" />
+      <img alt="example" :src="`${API_URL}${project.thumbnail}`" />
     </template>
     <Flex gap="8" vertical
       ><p class="project-id">project_{{ project.id }}.tsx</p>
