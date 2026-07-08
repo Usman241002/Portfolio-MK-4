@@ -1,5 +1,5 @@
 <script setup>
-import { API_URL } from '@/config.js'
+import {  IMAGE_URL } from '@/config.js'
 import { onMounted, computed, ref, watch } from 'vue'
 import {
   Modal,
@@ -47,7 +47,7 @@ watch(
           uid: '-1',
           name: thumbnail.split('/').pop(),
           status: 'done',
-          url: `http://localhost:3000${thumbnail}`,
+          url: `${IMAGE_URL}${thumbnail}`,
         },
       ]
     }
