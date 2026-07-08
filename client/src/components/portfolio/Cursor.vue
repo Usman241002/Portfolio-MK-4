@@ -1,19 +1,31 @@
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-const props = defineProps<{
-  phrases: string[]
-  typeSpeed?: number
-  deleteSpeed?: number
-  pauseTime?: number
-}>()
+const props = defineProps({
+  phrases: {
+    type: Array,
+    required: true,
+  },
+  typeSpeed: {
+    type: Number,
+    default: 80,
+  },
+  deleteSpeed: {
+    type: Number,
+    default: 40,
+  },
+  pauseTime: {
+    type: Number,
+    default: 2000,
+  },
+})
 
 const displayText = ref('')
 const phraseIndex = ref(0)
 const charIndex = ref(0)
 const isDeleting = ref(false)
 
-let interval: ReturnType<typeof setInterval>
+let interval
 
 const typeSpeed = props.typeSpeed ?? 80
 const deleteSpeed = props.deleteSpeed ?? 40

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { RouterView } from 'vue-router'
 import { Layout } from 'ant-design-vue'
 import Navbar from '@/components/dashboard/Navbar.vue'

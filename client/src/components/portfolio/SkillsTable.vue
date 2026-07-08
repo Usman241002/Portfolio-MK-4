@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import useSkillsStore from '@/stores/skillsStore.js'

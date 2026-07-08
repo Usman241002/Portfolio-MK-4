@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { computed, onMounted, reactive } from 'vue'
 import { Row, Col, Flex, Form, Input, Divider } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'

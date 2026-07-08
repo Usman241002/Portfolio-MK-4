@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import Header from '@/components/dashboard/Header.vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
 </script>

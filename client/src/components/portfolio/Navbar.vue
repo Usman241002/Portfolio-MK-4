@@ -1,12 +1,7 @@
-<script setup lang="ts">
+<script setup>
 import { Flex } from 'ant-design-vue'
 
-interface NavLink {
-  text: string
-  href: string
-}
-
-const navLinks: NavLink[] = [
+const navLinks = [
   { text: 'Home', href: '/' },
   { text: 'Projects', href: '/projects' },
   { text: 'About', href: '/about' },

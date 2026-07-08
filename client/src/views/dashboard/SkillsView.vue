@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { reactive, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { Flex, Button, Input } from 'ant-design-vue'

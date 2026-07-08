@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Flex, Row, Col, Button } from 'ant-design-vue'
 import ProfileForm from '@/components/dashboard/ProfileForm.vue'
 </script>

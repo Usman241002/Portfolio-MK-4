@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { PlusOutlined } from '@ant-design/icons-vue'
 
 import Header from '@/components/dashboard/Header.vue'

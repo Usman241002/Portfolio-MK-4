@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Flex, Button } from 'ant-design-vue'
 import { LogoutOutlined, FileOutlined } from '@ant-design/icons-vue'
 

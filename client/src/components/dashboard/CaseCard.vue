@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Form, Input, Row, Col, Button } from 'ant-design-vue'
 
 defineProps({

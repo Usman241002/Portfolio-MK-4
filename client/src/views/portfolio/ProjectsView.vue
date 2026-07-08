@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted, computed, watch } from 'vue'
 import { Flex, Row, Col, Divider, Skeleton } from 'ant-design-vue'
 import Title from '@/components/portfolio/Title.vue'
@@ -26,9 +26,9 @@ watch(
     const duration = 1200
     const start = performance.now()
 
-    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
 
-    function animate(time: number) {
+    function animate(time) {
       const progress = Math.min((time - start) / duration, 1)
 
       projectCount.value = Math.floor(easeOutCubic(progress) * newTarget)

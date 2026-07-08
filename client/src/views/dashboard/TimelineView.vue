@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { onMounted } from 'vue'
 import { Flex, Divider, Collapse, Button } from 'ant-design-vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
@@ -14,7 +14,7 @@ onMounted(async () => {
   await experienceStore.fetchExperience()
 })
 
-function onRemove(id: number) {
+function onRemove(id) {
   experienceStore.removeExperience(id)
 }
 </script>

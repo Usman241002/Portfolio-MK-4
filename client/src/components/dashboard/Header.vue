@@ -1,7 +1,7 @@
-<script setup lang="ts">
+<script setup>
 import { Flex } from 'ant-design-vue'
 
-const { title } = defineProps<{ title: string }>()
+const { title } = defineProps({ title :{ type: String }})
 </script>
 
 <template>

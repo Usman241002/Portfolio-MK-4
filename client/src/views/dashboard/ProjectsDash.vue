@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { Flex } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'

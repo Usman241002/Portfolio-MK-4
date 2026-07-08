@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { Flex, Button } from 'ant-design-vue'
 import { EditOutlined, CloseOutlined } from '@ant-design/icons-vue'

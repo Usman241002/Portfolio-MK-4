@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted, computed } from 'vue'
 import { Flex, Row, Col, Divider } from 'ant-design-vue'
 import Subtitle from '@/components/portfolio/Subtitle.vue'

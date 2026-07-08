@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Flex, Row, Col } from 'ant-design-vue'
 
 const { stat, desc } = defineProps({

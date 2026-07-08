@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { API_URL } from '@/config.ts'
+<script setup>
+import { API_URL } from '@/config.js'
 import { onMounted, computed, ref, watch } from 'vue'
 import {
   Modal,
@@ -25,20 +25,19 @@ import { storeToRefs } from 'pinia'
 import useSkillsStore from '@/stores/skillsStore.js'
 import useProjectsStore from '@/stores/projectsStore.js'
 
-const props = defineProps<{
-  modalVisible: boolean
-}>()
+const props = defineProps({
+  modalVisible : Boolean
+})
 
 const emit = defineEmits(['update:modalVisible'])
 const close = () => emit('update:modalVisible', false)
 
-// 1. Initialize stores and refs FIRST
 const projectsStore = useProjectsStore()
 const skillsStore = useSkillsStore()
 const { currentProject } = storeToRefs(projectsStore)
 const uploadFileList = ref([])
 
-// 2. NOW you can safely watch them
+
 watch(
   () => currentProject.value.thumbnail,
   (thumbnail) => {
@@ -48,7 +47,6 @@ watch(
           uid: '-1',
           name: thumbnail.split('/').pop(),
           status: 'done',
-          // FIXED: Added the missing // to http://
           url: `http://localhost:3000${thumbnail}`,
         },
       ]
@@ -85,7 +83,7 @@ async function onSave() {
   close()
 }
 
-const beforeUpload = (file: File) => {
+const beforeUpload = (file) => {
   currentProject.value.thumbnail = file
 
   uploadFileList.value = [

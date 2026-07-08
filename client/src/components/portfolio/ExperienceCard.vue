@@ -1,18 +1,12 @@
-<script setup lang="ts">
+<script setup>
 import { Row, Col, Flex } from 'ant-design-vue'
 import dayjs from 'dayjs'
 
-interface ExperienceItem {
-  start_date: string
-  end_date: string
-  title: string
-  company: string
-  description: string
-}
-
-defineProps<{
-  item: ExperienceItem
-}>()
+defineProps({
+  item : {
+    type: Object
+  }
+})
 </script>
 
 <template>

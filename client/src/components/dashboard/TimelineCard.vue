@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Form, Input, Row, Col, Select, DatePicker } from 'ant-design-vue'
 
 defineProps({

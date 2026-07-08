@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Flex } from 'ant-design-vue'
 
 const props = defineProps({

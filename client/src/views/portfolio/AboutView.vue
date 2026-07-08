@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { onMounted } from 'vue'
 
 import { Flex, Row, Col, Divider, Skeleton } from 'ant-design-vue'

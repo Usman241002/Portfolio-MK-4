@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref, reactive } from 'vue'
 import { Flex, Form, Input, Button, message } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
@@ -9,9 +9,7 @@ import { useRouter } from 'vue-router'
 const auth = useAuthStore()
 const router = useRouter()
 
-type formStateObject = { email: string; password: string }
-
-const formState: formStateObject = reactive({
+const formState = reactive({
   email: '',
   password: '',
 })

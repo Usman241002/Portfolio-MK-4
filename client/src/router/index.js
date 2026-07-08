@@ -21,7 +21,7 @@ import ContactDash from '@/views/dashboard/ContactDash.vue'
 import SettingsDash from '@/views/dashboard/SettingsDash.vue'
 
 import useAuthStore from '@/stores/authStore.js'
-import { pinia } from '@/main'
+import { pinia } from '@/main.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

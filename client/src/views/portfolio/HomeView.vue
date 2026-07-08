@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Flex, Divider } from 'ant-design-vue'
 
 import Hero from '@/components/portfolio/Hero.vue'

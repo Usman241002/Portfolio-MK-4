@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Card, Flex } from 'ant-design-vue'
 import Badge from '@/components/portfolio/Badge.vue'
 import { useRouter } from 'vue-router'

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Flex } from 'ant-design-vue'
 import Title from '@/components/portfolio/Title.vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'

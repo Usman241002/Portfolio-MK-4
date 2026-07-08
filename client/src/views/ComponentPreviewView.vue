@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Flex, Typography } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
