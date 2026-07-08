@@ -28,10 +28,27 @@ const app = new Koa();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend URL
+    origin: (ctx) => {
+      // List of allowed domains
+      const validOrigins = [
+        "http://localhost:5173",
+        "https://ukhalid.dev",
+        "https://www.ukhalid.dev"
+      ];
+
+      const requestOrigin = ctx.request.header.origin;
+
+      // If the request origin is in our allowed list, permit it
+      if (validOrigins.includes(requestOrigin)) {
+        return requestOrigin;
+      }
+
+      // Fallback for tools like Postman or direct browser hits
+      return validOrigins[0];
+    },
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
-  }),
+  })
 );
 
 app.use(

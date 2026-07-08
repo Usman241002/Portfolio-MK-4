@@ -8,7 +8,7 @@ import Badge from '@/components/portfolio/Badge.vue'
 import PropertiesCard from '@/components/portfolio/PropertiesCard.vue'
 import dayjs from 'dayjs'
 import CaseStat from '@/components/portfolio/CaseStat.vue'
-import {  API } from '@/config.js'
+import { API_URL } from '@/config.js'
 
 const route = useRoute()
 const projectsStore = useProjectsStore()
