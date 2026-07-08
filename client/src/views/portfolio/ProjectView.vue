@@ -42,7 +42,7 @@ const properties = computed(() => [
           <h5>{{ project.description }}</h5>
 
           <Flex gap="12">
-            <Badge v-for="skill in project.skills" :key="skill">
+            <Badge v-for="skill in project.skills" :key="skill.id">
               {{ skill.name }}
             </Badge>
           </Flex>
@@ -63,6 +63,11 @@ const properties = computed(() => [
         </Flex>
       </Col>
     </Row>
+
+    <Flex v-if="project.thumbnail">
+      <Divider :style="{ border: '1px solid var(--border)' }" />
+      <img :src="`http://localhost:3000${project.thumbnail}`" />
+    </Flex>
 
     <Row v-for="caseItem in project.cases" :key="caseItem.id">
       <Divider :style="{ border: '1px solid var(--border)' }" />

@@ -3,6 +3,9 @@ import Router from "koa-router";
 import koaBody from "koa-body";
 import cors from "@koa/cors";
 import dotenv from "dotenv";
+import serve from "koa-static";
+import fs from "fs";
+
 import authRouter from "./routes/authRoute.js";
 import projectsRouter from "./routes/projectsRoute.js";
 import skillsRouter from "./routes/skillsRoute.js";
@@ -11,6 +14,15 @@ import experienceRouter from "./routes/experienceRoute.js";
 import contactRouter from "./routes/contactRoute.js";
 
 dotenv.config();
+
+const uploadDir =
+  process.env.NODE_ENV === "test"
+    ? process.env.UPLOAD_TEST_DIR
+    : process.env.UPLOAD_DIR;
+// ensure folder exists
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const app = new Koa();
 
@@ -22,7 +34,19 @@ app.use(
   }),
 );
 
-app.use(koaBody());
+app.use(
+  koaBody({
+    multipart: true,
+    parsedMethods: ["POST", "PUT", "DELETE"],
+    formidable: {
+      uploadDir: uploadDir, // folder where files will be saved
+      keepExtensions: true, // keeps extensions
+      multiples: true, // allows multiple images
+    },
+  }),
+);
+
+app.use(serve("uploads"));
 
 app.use(async (ctx, next) => {
   try {

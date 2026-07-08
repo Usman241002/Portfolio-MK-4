@@ -51,7 +51,7 @@ async function onSubmit(formState) {
         <h3 id="login-subtitle">Sign in to continue</h3>
       </Flex>
 
-      <Form :model="formState" :rules="rules" layout="vertical" @finish="onSubmit">
+      <Form id="login-form" :model="formState" :rules="rules" layout="vertical" @finish="onSubmit">
         <Form.Item name="email" class="form-label" label="Email:">
           <Input
             class="form-input"
@@ -78,6 +78,12 @@ async function onSubmit(formState) {
 </template>
 
 <style scoped>
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 #login-title {
   font: var(--heading-md);
   letter-spacing: var(--heading-md-tracking);

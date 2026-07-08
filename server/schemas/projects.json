@@ -48,7 +48,7 @@
           "minimum": 1900,
           "maximum": 2100
         },
-        "descriptionription": {
+        "description": {
           "type": "string",
           "minLength": 1
         },
@@ -136,7 +136,7 @@
         "client",
         "role",
         "year",
-        "descriptionription",
+        "description",
         "status",
         "skill_ids"
       ],
@@ -175,7 +175,7 @@
           "minimum": 1900,
           "maximum": 2100
         },
-        "descriptionription": {
+        "description": {
           "type": "string",
           "minLength": 1
         },

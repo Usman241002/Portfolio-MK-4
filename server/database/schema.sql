@@ -31,6 +31,7 @@ CREATE TABLE projects (
     status ENUM('ongoing', 'completed', 'archived') NOT NULL DEFAULT 'ongoing',
     repository_url VARCHAR(2048),
     live_demo_url VARCHAR(2048),
+    thumbnail  VARCHAR(256),
     deleted BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

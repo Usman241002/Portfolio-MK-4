@@ -5,6 +5,7 @@ import { API_URL } from '@/config'
 const apiUrl = import.meta.env.VITE_API_URL
 
 const useAuthStore = defineStore('auth', () => {
+  const loading = ref(false)
   const token = ref(null)
 
   const isLoggedIn = computed(() => !!token.value)
@@ -22,6 +23,7 @@ const useAuthStore = defineStore('auth', () => {
 
   async function login(formState) {
     try {
+      loading.value = true
       const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
@@ -40,6 +42,8 @@ const useAuthStore = defineStore('auth', () => {
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 

@@ -5,6 +5,7 @@ import {
   addProject,
   updateProject,
   deleteProject,
+  uploadImage,
 } from "../controllers/projectsController.js";
 import {
   getAllProjectsValidator,
@@ -39,5 +40,9 @@ projectsRouter.delete(
   jwtMiddleware,
   deleteProject,
 );
+//POST //api/projects/:id/thumbnail
+projectsRouter.post("/:id/thumbnail", jwtMiddleware, uploadImage);
+//PUT //api/projects/:id/thumbnail
+projectsRouter.put("/:id/thumbnail", jwtMiddleware, uploadImage);
 
 export default projectsRouter;

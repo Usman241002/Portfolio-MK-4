@@ -7,9 +7,11 @@ import useAuthStore from '@/stores/authStore.js'
 const useExperienceStore = defineStore('experience', () => {
   const authStore = useAuthStore()
   const experiences = ref([])
+  const loading = ref(false)
 
   async function fetchExperience() {
     try {
+      loading.value = true
       const response = await fetch(`${API_URL}/experience`)
       const data = await response.json()
 
@@ -22,6 +24,8 @@ const useExperienceStore = defineStore('experience', () => {
     } catch (error) {
       console.error(error)
       throw error
+    } finally {
+      loading.value = false
     }
   }
 
@@ -47,6 +51,7 @@ const useExperienceStore = defineStore('experience', () => {
 
   async function updateExperience() {
     try {
+      loading.value = true
       const response = await api(`${API_URL}/experience`, {
         method: 'PUT',
         headers: {
@@ -64,10 +69,19 @@ const useExperienceStore = defineStore('experience', () => {
     } catch (error) {
       console.error(error)
       throw error
+    } finally {
+      loading.value = false
     }
   }
 
-  return { experiences, fetchExperience, addExperience, removeExperience, updateExperience }
+  return {
+    experiences,
+    fetchExperience,
+    addExperience,
+    removeExperience,
+    updateExperience,
+    loading,
+  }
 })
 
 export default useExperienceStore

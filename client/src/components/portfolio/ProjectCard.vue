@@ -2,6 +2,7 @@
 import { Card, Flex } from 'ant-design-vue'
 import Badge from '@/components/portfolio/Badge.vue'
 import { useRouter } from 'vue-router'
+import { API_URL } from '@/config.js'
 
 const router = useRouter()
 
@@ -13,11 +14,8 @@ const { project, type = 'standard' } = defineProps({
 
 <template>
   <Card class="project-card" @click="router.push(`/projects/${project.id}`)">
-    <template v-if="type === 'cover'" #cover>
-      <img
-        alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      />
+    <template v-if="type === 'cover' && project.thumbnail" #cover>
+      <img alt="example" :src="`http://localhost:3000${project.thumbnail}`" />
     </template>
     <Flex gap="8" vertical
       ><p class="project-id">project_{{ project.id }}.tsx</p>
@@ -34,6 +32,12 @@ const { project, type = 'standard' } = defineProps({
 </template>
 
 <style>
+img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
 .project-card {
   border-radius: 0;
   border: 1px solid var(--text-primary);

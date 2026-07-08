@@ -216,10 +216,20 @@ async function deleteProjectById(projectId) {
   return result.affectedRows > 0;
 }
 
+async function updateThumbnail(projectId, imageUrl) {
+  const result = await runQuery(
+    "UPDATE projects SET thumbnail = ? WHERE id = ?",
+    [imageUrl, projectId],
+  );
+
+  return result.affectedRows > 0;
+}
+
 export const projectsModel = {
   getProjects,
   getProjectById,
   addProject,
   updateProject,
   deleteProjectById,
+  updateThumbnail,
 };

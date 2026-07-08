@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
+import { API_URL } from '@/config.ts'
+import { onMounted, computed, ref, watch } from 'vue'
 import {
   Modal,
   Flex,
@@ -8,9 +9,12 @@ import {
   Row,
   Col,
   Input,
+  InputNumber,
   Select,
   Button,
   Collapse,
+  Upload,
+  Typography,
 } from 'ant-design-vue'
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons-vue'
 import BaseButton from '../portfolio/BaseButton.vue'
@@ -28,10 +32,30 @@ const props = defineProps<{
 const emit = defineEmits(['update:modalVisible'])
 const close = () => emit('update:modalVisible', false)
 
+// 1. Initialize stores and refs FIRST
 const projectsStore = useProjectsStore()
 const skillsStore = useSkillsStore()
-
 const { currentProject } = storeToRefs(projectsStore)
+const uploadFileList = ref([])
+
+// 2. NOW you can safely watch them
+watch(
+  () => currentProject.value.thumbnail,
+  (thumbnail) => {
+    if (typeof thumbnail === 'string') {
+      uploadFileList.value = [
+        {
+          uid: '-1',
+          name: thumbnail.split('/').pop(),
+          status: 'done',
+          // FIXED: Added the missing // to http://
+          url: `http://localhost:3000${thumbnail}`,
+        },
+      ]
+    }
+  },
+  { immediate: true },
+)
 
 const skillOptions = computed(() =>
   skillsStore.skills.map((skill) => ({ label: skill.name, value: skill.id })),
@@ -59,6 +83,26 @@ function onRemove(caseId) {
 async function onSave() {
   await projectsStore.saveProject()
   close()
+}
+
+const beforeUpload = (file: File) => {
+  currentProject.value.thumbnail = file
+
+  uploadFileList.value = [
+    {
+      uid: String(Date.now()),
+      name: file.name,
+      status: 'done',
+      originFileObj: file,
+    },
+  ]
+
+  return false
+}
+
+function onRemoveImage() {
+  currentProject.value.thumbnail = null
+  uploadFileList.value = []
 }
 </script>
 
@@ -107,7 +151,11 @@ async function onSave() {
           </Col>
           <Col :span="12">
             <Form.Item class="form-label" label="Year">
-              <Input type="text" class="form-input" v-model:value="currentProject.year" />
+              <InputNumber
+                class="form-input"
+                v-model:value="currentProject.year"
+                style="width: 100%"
+              />
             </Form.Item>
           </Col>
           <Col :span="24">
@@ -137,7 +185,7 @@ async function onSave() {
           <Col :span="12">
             <Form.Item class="form-label" label="Tech Stack">
               <Select
-                mode="tags"
+                mode="multiple"
                 class="form-select"
                 v-model:value="currentProject.skill_ids"
                 :options="skillOptions"
@@ -155,6 +203,40 @@ async function onSave() {
                   { value: 'archived', label: 'Archived' },
                 ]"
               />
+            </Form.Item>
+          </Col>
+          <Col :span="24">
+            <Form.Item label="Thumbnail Image">
+              <Upload
+                v-model:file-list="uploadFileList"
+                :before-upload="beforeUpload"
+                :show-upload-list="true"
+                :on-remove="onRemoveImage"
+                :max-count="1"
+                accept="image/*"
+              >
+                <Flex
+                  class="upload"
+                  align="center"
+                  gap="8"
+                  :style="{
+                    backgroundColor: 'var(--bg)',
+                    padding: '0.5rem',
+                    border: '1px solid var(--border)',
+                  }"
+                >
+                  <PlusOutlined :style="{ color: 'var(--text-secondary)' }" />
+                  <Typography.Text
+                    :style="{
+                      font: 'var(--label)',
+                      letterSpacing: 'var(--label-tracking)',
+                      color: 'var(--text-secondary)',
+                    }"
+                  >
+                    Upload
+                  </Typography.Text>
+                </Flex>
+              </Upload>
             </Form.Item>
           </Col>
         </Row>
@@ -245,5 +327,9 @@ async function onSave() {
 
 :deep(.ant-form-item) {
   margin-bottom: 0.25rem;
+}
+
+.upload:hover {
+  cursor: pointer;
 }
 </style>

@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import { API_URL } from '@/config.js'
 import { api } from '../router/fetch'
@@ -6,6 +6,7 @@ import useAuthStore from '@/stores/authStore.js'
 
 const useProfileStore = defineStore('profile', () => {
   const authStore = useAuthStore()
+  const loading = ref(false)
   const profile = reactive({
     name: '',
     role: '',
@@ -18,6 +19,7 @@ const useProfileStore = defineStore('profile', () => {
 
   async function fetchProfile() {
     try {
+      loading.value = true
       const response = await fetch(`${API_URL}/profile`, {
         headers: {
           Authorization: `Bearer ${authStore.token}`,
@@ -33,11 +35,14 @@ const useProfileStore = defineStore('profile', () => {
     } catch (error) {
       console.error(error)
       throw error
+    } finally {
+      loading.value = false
     }
   }
 
   async function updateProfile() {
     try {
+      loading.value = true
       const response = await api(`${API_URL}/profile`, {
         method: 'PUT',
         headers: {
@@ -53,6 +58,8 @@ const useProfileStore = defineStore('profile', () => {
     } catch (error) {
       console.error(error)
       throw error
+    } finally {
+      loading.value = false
     }
   }
 
@@ -60,6 +67,7 @@ const useProfileStore = defineStore('profile', () => {
     profile,
     fetchProfile,
     updateProfile,
+    loading,
   }
 })
 

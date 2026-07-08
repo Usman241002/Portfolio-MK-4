@@ -7,6 +7,7 @@ import useAuthStore from '@/stores/authStore.js'
 export const useProjectsStore = defineStore('projects', () => {
   const authStore = useAuthStore()
   const projects = ref([])
+  const loading = ref(false)
 
   const getEmptyProject = () => ({
     id: null,
@@ -19,6 +20,7 @@ export const useProjectsStore = defineStore('projects', () => {
     status: '',
     repository_url: '',
     live_demo_url: '',
+    thumbnail: null,
     skill_ids: [],
     cases: [],
   })
@@ -35,6 +37,7 @@ export const useProjectsStore = defineStore('projects', () => {
 
   async function getAllProjects() {
     try {
+      loading.value = true
       const response = await fetch(`${API_URL}/projects`)
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Failed to fetch projects')
@@ -42,11 +45,14 @@ export const useProjectsStore = defineStore('projects', () => {
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
   async function getProjectById(projectId) {
     try {
+      loading.value = true
       const response = await fetch(`${API_URL}/projects/${projectId}`)
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Failed to fetch project')
@@ -54,41 +60,62 @@ export const useProjectsStore = defineStore('projects', () => {
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
   async function addProject() {
     try {
+      loading.value = true
+
+      const payload = { ...currentProject.value }
+      delete payload.thumbnail
+
       const response = await api(`${API_URL}/projects`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${authStore.token}`,
         },
-        body: JSON.stringify(currentProject.value),
+        body: JSON.stringify(payload),
       })
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Failed to add project')
+
+      if (currentProject.value.thumbnail) {
+        await uploadImage(data.project.id, currentProject.value.thumbnail, 'POST')
+      }
 
       projects.value.push(data.project)
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
   async function updateProject() {
     try {
+      loading.value = true
+      const payload = { ...currentProject.value }
+      delete payload.thumbnail
+
       const response = await api(`${API_URL}/projects/${currentProject.value.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${authStore.token}`,
         },
-        body: JSON.stringify(currentProject.value),
+        body: JSON.stringify(payload), // FIXED: Send cleaned payload
       })
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Failed to update project')
+
+      if (currentProject.value.thumbnail instanceof File) {
+        await uploadImage(currentProject.value.id, currentProject.value.thumbnail, 'PUT')
+      }
 
       const index = projects.value.findIndex((p) => p.id === currentProject.value.id)
       if (index !== -1) {
@@ -97,11 +124,14 @@ export const useProjectsStore = defineStore('projects', () => {
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
   async function deleteProject(id) {
     try {
+      loading.value = true
       const response = await api(`${API_URL}/projects/${id}`, {
         method: 'DELETE',
         headers: {
@@ -110,12 +140,14 @@ export const useProjectsStore = defineStore('projects', () => {
         },
       })
       const data = await response.json()
-      if (!response.ok) throw new Error(data.message || 'Failed to update project')
+      if (!response.ok) throw new Error(data.message || 'Failed to delete project')
 
       projects.value = projects.value.filter((project) => project.id !== id)
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
@@ -128,6 +160,33 @@ export const useProjectsStore = defineStore('projects', () => {
     resetCurrentProject()
   }
 
+  async function uploadImage(projectId, image, httpMethod = 'POST') {
+    try {
+      const formData = new FormData()
+
+      formData.append('thumbnail', image)
+
+      const response = await api(`${API_URL}/projects/${projectId}/thumbnail`, {
+        method: httpMethod,
+        headers: {
+          Authorization: `Bearer ${authStore.token}`,
+        },
+        body: formData,
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to upload thumbnail')
+      }
+
+      return data
+    } catch (error) {
+      console.error('Error uploading thumbnail:', error)
+      throw Error(error.message)
+    }
+  }
+
   return {
     projects,
     currentProject,
@@ -137,6 +196,7 @@ export const useProjectsStore = defineStore('projects', () => {
     getProjectById,
     saveProject,
     deleteProject,
+    loading,
   }
 })
 

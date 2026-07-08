@@ -8,9 +8,11 @@ const skillsStore = defineStore('skills', () => {
   const authStore = useAuthStore()
 
   const skills = ref([])
+  const loading = ref(false)
 
   async function getSkills() {
     try {
+      loading.value = true
       const response = await fetch(`${API_URL}/skills`)
       const data = await response.json()
 
@@ -22,11 +24,14 @@ const skillsStore = defineStore('skills', () => {
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
   async function addSkill(skillForm) {
     try {
+      loading.value = true
       const response = await api(`${API_URL}/skills`, {
         method: 'POST',
         headers: {
@@ -48,11 +53,14 @@ const skillsStore = defineStore('skills', () => {
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
   async function deleteSkill(skillId) {
     try {
+      loading.value = true
       const response = await api(`${API_URL}/skills/${skillId}`, {
         method: 'DELETE',
         headers: {
@@ -72,6 +80,8 @@ const skillsStore = defineStore('skills', () => {
     } catch (error) {
       console.error(error)
       throw Error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
@@ -80,6 +90,7 @@ const skillsStore = defineStore('skills', () => {
     getSkills,
     addSkill,
     deleteSkill,
+    loading,
   }
 })
 

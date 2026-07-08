@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive } from 'vue'
-import { Row, Col, Flex, Form, Input, Divider, message } from 'ant-design-vue'
+import { Row, Col, Flex, Form, Input, Divider } from 'ant-design-vue'
 import { ArrowRightOutlined } from '@ant-design/icons-vue'
 import Title from '@/components/portfolio/Title.vue'
 import Subtitle from '@/components/portfolio/Subtitle.vue'

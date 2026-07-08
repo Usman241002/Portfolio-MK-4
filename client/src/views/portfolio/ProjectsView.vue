@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue'
-import { Flex, Row, Col, Divider } from 'ant-design-vue'
+import { Flex, Row, Col, Divider, Skeleton } from 'ant-design-vue'
 import Title from '@/components/portfolio/Title.vue'
 import ProjectCard from '@/components/portfolio/ProjectCard.vue'
 
@@ -65,7 +65,13 @@ watch(
       </Col>
     </Row>
     <Divider :style="{ border: '1px solid var(--border)' }" />
-    <Row :gutter="[24, 24]">
+    <Row v-if="projectsStore.loading" :gutter="[24, 24]">
+      <Col v-for="i in 3" :key="i" :xs="24" :sm="12" :lg="8" style="display: flex">
+        <Skeleton active style="width: 100%" />
+      </Col>
+    </Row>
+
+    <Row v-else :gutter="[24, 24]">
       <Col
         v-for="project in projects"
         :key="project.id"
