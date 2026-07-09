@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { Flex, Button } from 'ant-design-vue'
-import { EditOutlined, CloseOutlined } from '@ant-design/icons-vue'
+import { EditOutlined, CloseOutlined, StarOutlined, StarFilled } from '@ant-design/icons-vue'
 import useProjectsStore from '@/stores/projectsStore.js'
 import dayjs from 'dayjs'
 
@@ -18,11 +18,16 @@ onMounted(async () => {
 
 const openEditModal = (project) => {
   projectsStore.setCurrentProject(project)
+  selectedProject.value = project // Fix: Assign the selected project to the ref
   isModalVisible.value = true
 }
 
 async function onDelete(id) {
   await projectsStore.deleteProject(id)
+}
+
+async function onFavourite(project) {
+  await projectsStore.toggleFavourite(project)
 }
 </script>
 
@@ -48,20 +53,31 @@ async function onDelete(id) {
             <Flex gap="8">
               <Button
                 @click="openEditModal(project)"
-                :style="{ borderRadius: '0' }"
-                type="primary"
+                type="text"
+                shape="circle"
                 ghost
               >
                 <EditOutlined />
               </Button>
               <Button
                 @click="onDelete(project.id)"
-                :style="{ borderRadius: '0' }"
-                type="primary"
+                type="text"
+                shape="circle"
                 ghost
                 danger
               >
                 <CloseOutlined />
+              </Button>
+              <Button
+                @click="onFavourite(project)"
+                type="text"
+                shape="circle"
+                :style="{color: '#F5A623'}"
+                ghost
+              >
+                <!-- Fix: Use v-if/v-else instead of JSX interpolation -->
+                <StarFilled v-if="project.favourite" />
+                <StarOutlined v-else />
               </Button>
             </Flex>
           </td>

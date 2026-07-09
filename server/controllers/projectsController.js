@@ -109,7 +109,48 @@ export async function deleteProject(ctx) {
   }
 }
 
-// projectsController.js
+export async function toggleFavourite(ctx) {
+  try {
+    const projectId = ctx.params.id;
+    const { favourite } = ctx.request.body;
+
+    const isUpdated = await projectsModel.updateFavouriteStatus(projectId, favourite);
+
+    if (!isUpdated) {
+      ctx.status = 404;
+      ctx.body = { message: "Project not found." };
+      return;
+    }
+
+    ctx.status = 200;
+    ctx.body = {
+      message: "Favourite status updated successfully",
+      favourite: favourite
+    };
+  } catch (error) {
+    console.error("Error in toggleFavourite controller:", error);
+    ctx.status = 500;
+    ctx.body = { message: error.message };
+  }
+}
+
+export async function getFavouriteProjects(ctx) {
+  try {
+    const projects = await projectsModel.getFavouriteProjects();
+
+    if (!projects) {
+      ctx.status = 404;
+      ctx.body = { message: "No favourite projects found" };
+      return;
+    }
+
+    ctx.status = 200;
+    ctx.body = projects;
+  } catch (error) {
+    ctx.status = 500;
+    ctx.body = { message: error.message };
+  }
+}
 
 export async function uploadImage(ctx) {
   try {

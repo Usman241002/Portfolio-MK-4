@@ -6,9 +6,13 @@ const addProjectSchema = projectsJson.definitions.addProject;
 const getProjectSchema = projectsJson.definitions.getProject;
 const updateProjectSchema = projectsJson.definitions.updateProject;
 const deleteProjectSchema = projectsJson.definitions.deleteProject;
+const toggleFavouriteSchema = projectsJson.definitions.toggleFavourite;
+const getFavouriteProjectsSchema = projectsJson.definitions.getFavouriteProjects;
 
 export const getAllProjectsValidator = makeKoaValidator(getAllProjectsSchema);
 export const addProjectValidator = makeKoaValidator(addProjectSchema);
 export const getProjectValidator = makeKoaValidator(getProjectSchema);
 export const updateProjectValidator = makeKoaValidator(updateProjectSchema);
 export const deleteProjectValidator = makeKoaValidator(deleteProjectSchema);
+export const toggleFavouriteValidator = makeKoaValidator(toggleFavouriteSchema);
+export const getFavouriteProjectsValidator = makeKoaValidator(getFavouriteProjectsSchema);

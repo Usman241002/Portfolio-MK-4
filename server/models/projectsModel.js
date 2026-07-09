@@ -45,6 +45,38 @@ async function getProjects() {
   return projects.map(formatProjectData);
 }
 
+async function getFavouriteProjects() {
+  const projects = await runQuery(`
+    SELECT
+      p.*,
+      (
+        SELECT IF(COUNT(s.id) = 0, JSON_ARRAY(), JSON_ARRAYAGG(JSON_OBJECT('id', s.id, 'name', s.name)))
+        FROM project_skills ps
+        JOIN skills s ON s.id = ps.skill_id
+        WHERE ps.project_id = p.id
+      ) AS skills,
+      (
+        SELECT IF(COUNT(pc.id) = 0, JSON_ARRAY(), JSON_ARRAYAGG(
+          JSON_OBJECT(
+            'id', pc.id,
+            'heading', pc.heading,
+            'subheading', pc.subheading,
+            'description', pc.description,
+            'stat', pc.stat,
+            'stat_description', pc.stat_description
+          )
+        ))
+        FROM project_cases pc
+        WHERE pc.project_id = p.id
+      ) AS cases
+    FROM projects p
+    WHERE p.deleted = false AND p.favourite = true
+    LIMIT 3
+  `);
+
+  return projects.map(formatProjectData);
+}
+
 async function getProjectById(projectId) {
   const result = await runQuery(
     `
@@ -216,6 +248,15 @@ async function deleteProjectById(projectId) {
   return result.affectedRows > 0;
 }
 
+async function updateFavouriteStatus(projectId, isFavourite) {
+  const result = await runQuery(
+    "UPDATE projects SET favourite = ? WHERE id = ?",
+    [isFavourite, projectId]
+  );
+
+  return result.affectedRows > 0;
+}
+
 async function updateThumbnail(projectId, imageUrl) {
   const result = await runQuery(
     "UPDATE projects SET thumbnail = ? WHERE id = ?",
@@ -231,5 +272,7 @@ export const projectsModel = {
   addProject,
   updateProject,
   deleteProjectById,
+  updateFavouriteStatus,
   updateThumbnail,
+  getFavouriteProjects
 };

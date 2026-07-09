@@ -7,6 +7,7 @@ import useAuthStore from '@/stores/authStore.js'
 export const useProjectsStore = defineStore('projects', () => {
   const authStore = useAuthStore()
   const projects = ref([])
+  const favouriteProjects = ref([])
   const loading = ref(false)
 
   const getEmptyProject = () => ({
@@ -42,6 +43,21 @@ export const useProjectsStore = defineStore('projects', () => {
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Failed to fetch projects')
       projects.value = data
+    } catch (error) {
+      console.error(error)
+      throw Error(error.message)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  async function getFavouriteProjects() {
+    try {
+      loading.value = true
+      const response = await fetch(`${API_URL}/api/projects/favourite`)
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.message || 'Failed to fetch favourite projects')
+      favouriteProjects.value = data
     } catch (error) {
       console.error(error)
       throw Error(error.message)
@@ -160,6 +176,50 @@ export const useProjectsStore = defineStore('projects', () => {
     resetCurrentProject()
   }
 
+  async function toggleFavourite(project) {
+      try {
+        loading.value = true
+
+        const newFavouriteStatus = !project.favourite
+
+        if (newFavouriteStatus) {
+          const currentFavouriteCount = projects.value.filter((p) => p.favourite).length
+          if (currentFavouriteCount >= 3) {
+            throw new Error('You cannot feature more than 3 projects at a time.')
+          }
+        }
+
+        const response = await api(`${API_URL}/api/projects/${project.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authStore.token}`,
+          },
+          body: JSON.stringify({ favourite: newFavouriteStatus })
+        })
+
+        const data = await response.json()
+        if (!response.ok) throw new Error(data.message || 'Failed to update favourite status')
+
+        const index = projects.value.findIndex((p) => p.id === project.id)
+        if (index !== -1) {
+          projects.value[index].favourite = newFavouriteStatus
+        }
+
+        if (newFavouriteStatus) {
+          favouriteProjects.value.push(projects.value[index])
+        } else {
+          favouriteProjects.value = favouriteProjects.value.filter(p => p.id !== project.id)
+        }
+
+      } catch (error) {
+        console.error(error)
+        throw Error(error.message)
+      } finally {
+        loading.value = false
+      }
+    }
+
   async function uploadImage(projectId, image, httpMethod = 'POST') {
     try {
       const formData = new FormData()
@@ -189,6 +249,7 @@ export const useProjectsStore = defineStore('projects', () => {
 
   return {
     projects,
+    favouriteProjects,
     currentProject,
     resetCurrentProject,
     setCurrentProject,
@@ -196,6 +257,8 @@ export const useProjectsStore = defineStore('projects', () => {
     getProjectById,
     saveProject,
     deleteProject,
+    toggleFavourite,
+    getFavouriteProjects,
     loading,
   }
 })

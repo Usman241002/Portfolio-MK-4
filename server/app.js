@@ -47,7 +47,7 @@ app.use(
       // Fallback for tools like Postman or direct browser hits
       return validOrigins[0];
     },
-    allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
   })
 );
@@ -55,7 +55,7 @@ app.use(
 app.use(
   koaBody({
     multipart: true,
-    parsedMethods: ["POST", "PUT", "DELETE"],
+    parsedMethods: ["POST", "PUT", "PATCH", "DELETE"],
     formidable: {
       uploadDir: uploadDir, // folder where files will be saved
       keepExtensions: true, // keeps extensions
