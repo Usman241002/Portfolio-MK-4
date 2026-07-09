@@ -12,6 +12,7 @@ import skillsRouter from "./routes/skillsRoute.js";
 import profileRouter from "./routes/profileRoute.js";
 import experienceRouter from "./routes/experienceRoute.js";
 import contactRouter from "./routes/contactRoute.js";
+import educationRouter from "./routes/educationRoute.js";
 
 dotenv.config();
 
@@ -89,6 +90,8 @@ router.use(skillsRouter.routes());
 router.use(profileRouter.routes());
 router.use(experienceRouter.routes());
 router.use(contactRouter.routes());
+router.use(educationRouter.routes());
+
 
 app.use(router.routes());
 

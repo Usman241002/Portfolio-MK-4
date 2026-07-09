@@ -6,12 +6,16 @@ import Subtitle from '@/components/portfolio/Subtitle.vue'
 import AboutMe from '@/components/portfolio/AboutMe.vue'
 import SkillsTable from '@/components/portfolio/SkillsTable.vue'
 import ExperienceCard from '@/components/portfolio/ExperienceCard.vue'
+import EducationCard from '@/components/portfolio/EducationCard.vue'
 
 import useExperienceStore from '@/stores/experienceStore.js'
 import useSkillsStore from '@/stores/skillsStore.js'
+import useEducationStore from '../../stores/educationStore'
 
 const experienceStore = useExperienceStore()
 const skillsStore = useSkillsStore()
+const educationStore = useExperienceStore()
+
 
 onMounted(async () => {
   await experienceStore.fetchExperience()
@@ -20,39 +24,57 @@ onMounted(async () => {
 
 <template>
   <Flex class="container" gap="24" vertical>
-    <Row :gutter="24">
-      <Col :span="12">
+    <Row :gutter="[0, 24]">
+      <Col :xs="24" :lg="12">
         <Flex class="temp-rect" />
       </Col>
-      <Col :span="12">
+      <Col :xs="24" :lg="12">
         <AboutMe />
       </Col>
     </Row>
 
-    <Divider />
+    <Divider :style="{ border: '1px solid var(--border)' }" />
 
-    <Row>
-      <Col :span="4">
+    <Row :gutter="[0, 24]">
+      <Col :xs="24" :md="4">
         <Subtitle>Skills</Subtitle>
       </Col>
-      <Col :span="20">
+      <Col :xs="24" :md="20">
         <Skeleton v-if="skillsStore.loading" active style="width: 100%" />
         <SkillsTable />
       </Col>
     </Row>
 
-    <Divider />
+    <Divider :style="{ border: '1px solid var(--border)' }" />
 
-    <Row>
-      <Col :span="4">
+    <Row :gutter="[0, 24]">
+      <Col :xs="24" :md="4">
         <Subtitle>Experience</Subtitle>
       </Col>
 
-      <Col :span="20">
+      <Col :xs="24" :md="20">
         <Skeleton v-if="experienceStore.loading" active style="width: 100%" />
         <ExperienceCard
           v-else
           v-for="item in experienceStore.experiences"
+          :key="item.id"
+          :item="item"
+        />
+      </Col>
+    </Row>
+
+    <Divider :style="{ border: '1px solid var(--border)' }" />
+
+    <Row>
+      <Col :xs="24" :md="4">
+        <Subtitle>Education</Subtitle>
+      </Col>
+
+      <Col :xs="24" :md="20">
+        <Skeleton v-if="educationStore.loading" active style="width: 100%" />
+        <EducationCard
+          v-else
+          v-for="item in educationStore.educations"
           :key="item.id"
           :item="item"
         />

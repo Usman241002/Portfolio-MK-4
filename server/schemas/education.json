@@ -1,0 +1,59 @@
+{
+  "definitions": {
+    "getEducation": {
+      "id": "getEducation",
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "updateEducation": {
+      "id": "updateEducation",
+      "type": "object",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": ["string", "null"],
+            "format": "date"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "company": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "location": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 65535
+          }
+        },
+        "required": [
+          "id",
+          "start_date",
+          "title",
+          "company",
+          "location"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

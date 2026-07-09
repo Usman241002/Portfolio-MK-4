@@ -63,7 +63,7 @@ async function onSubmit() {
 
 <template>
   <Row>
-    <Col span="16">
+    <Col :xs="24"  :lg="16">
       <Flex class="container" gap="24" vertical>
         <Flex gap="16" vertical>
           <Title>Selected work []</Title>
@@ -99,7 +99,7 @@ async function onSubmit() {
           /></BaseButton>
         </Form> </Flex
     ></Col>
-    <Col :span="8">
+    <Col :xs="24"  :lg="8">
       <Flex class="container" align="end" gap="16" vertical>
         <PropertiesCard>
           <Subtitle :style="{ color: 'var(--accent)' }">Properties</Subtitle>

@@ -7,13 +7,18 @@ import BaseButton from '@/components/portfolio/BaseButton.vue'
 
 import SkillsView from './SkillsView.vue'
 import IdentityView from './IdentityView.vue'
-import TimelineView from './TimelineView.vue'
+import ExperienceView from './ExperienceView.vue'
+import EducationView from './EducationView.vue'
+
 
 import useProfileStore from '@/stores/profileStore.js'
 import useExperienceStore from '@/stores/experienceStore.js'
+import useEducationStore from '@/stores/educationStore.js'
+
 
 const profileStore = useProfileStore()
 const experienceStore = useExperienceStore()
+const educationStore = useEducationStore()
 
 const current = ref(['1'])
 
@@ -27,15 +32,20 @@ const items = [
     key: '2',
   },
   {
-    label: 'Timeline',
+    label: 'Experience',
     key: '3',
+  },
+  {
+    label: 'Education',
+    key: '4',
   },
 ]
 
 const views = {
   '1': IdentityView,
   '2': SkillsView,
-  '3': TimelineView,
+  '3': ExperienceView,
+  '4': EducationView,
 }
 
 const activeComponent = computed(() => views[current.value[0]])
@@ -43,6 +53,7 @@ const activeComponent = computed(() => views[current.value[0]])
 async function onSave() {
   await profileStore.updateProfile()
   await experienceStore.updateExperience()
+  await educationStore.updateEducation()
 }
 </script>
 

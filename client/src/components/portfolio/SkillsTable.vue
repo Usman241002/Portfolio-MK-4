@@ -26,6 +26,7 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
 .skill-row {
   display: flex;
   justify-content: space-between;
@@ -38,14 +39,33 @@ onMounted(async () => {
 .skill-row:nth-child(odd) {
   border-right: 1px solid var(--border);
 }
+
 .skill-name {
   font: var(--body);
   color: var(--text-primary);
   font-weight: 700;
 }
+
 .skill-level {
   font: var(--label);
   letter-spacing: var(--label-tracking);
   color: var(--text-secondary);
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-row {
+    /* Slightly reduced padding for mobile */
+    padding: 1rem;
+  }
+
+  .skill-row:nth-child(odd) {
+    /* Removes the middle border since it's just one column now */
+    border-right: none;
+  }
 }
 </style>

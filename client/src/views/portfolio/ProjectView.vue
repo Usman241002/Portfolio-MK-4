@@ -35,22 +35,22 @@ const properties = computed(() => [
 
 <template>
   <Flex v-if="project" gap="24" vertical>
-    <Row>
-      <Col :span="16">
+    <Row :gutter="[24, 24]">
+      <Col :xs="24" :md="16">
         <Flex gap="16" class="hero container" vertical>
           <p class="project-id">project_{{ project.id }}.tsx</p>
           <h2>{{ project.title }}</h2>
           <h5>{{ project.description }}</h5>
 
-          <Flex gap="12">
+          <Flex gap="12" wrap="wrap">
             <Badge v-for="skill in project.skills" :key="skill.id">
               {{ skill.name }}
             </Badge>
           </Flex>
         </Flex>
       </Col>
-      <Col :span="8">
-        <Flex justify="end" class="container">
+      <Col :xs="24" :md="8">
+        <Flex class="container properties-wrapper">
           <PropertiesCard>
             <Subtitle :style="{ color: 'var(--accent)' }">Properties</Subtitle>
             <Flex v-for="property in properties" :key="property.name" vertical>
@@ -65,18 +65,18 @@ const properties = computed(() => [
       </Col>
     </Row>
 
-    <Flex v-if="project.thumbnail">
+    <Flex v-if="project.thumbnail" vertical>
       <Divider :style="{ border: '1px solid var(--border)' }" />
-      <img :src="`${API_URL}${project.thumbnail}`" />
+      <img :src="`${API_URL}${project.thumbnail}`" class="responsive-img" />
     </Flex>
 
-    <Row v-for="caseItem in project.cases" :key="caseItem.id">
+    <div v-for="caseItem in project.cases" :key="caseItem.id">
       <Divider :style="{ border: '1px solid var(--border)' }" />
-      <Flex class="case container" :style="{ width: '100%' }">
-        <Col class="case-heading" :span="6">
+      <Row class="case container" :gutter="[24, 24]">
+        <Col class="case-heading" :xs="24" :md="6">
           <Subtitle>{{ caseItem.heading }}</Subtitle>
         </Col>
-        <Col :span="18">
+        <Col :xs="24" :md="18">
           <Flex gap="24" vertical>
             <h5>{{ caseItem.heading }}</h5>
             <p>
@@ -85,8 +85,8 @@ const properties = computed(() => [
             <CaseStat :stat="caseItem.stat" :desc="caseItem.stat_description" />
           </Flex>
         </Col>
-      </Flex>
-    </Row>
+      </Row>
+    </div>
   </Flex>
 </template>
 
@@ -134,5 +134,26 @@ const properties = computed(() => [
   z-index: 2;
   background: var(--background);
   padding-bottom: 0.5rem;
+}
+
+/* --- New Responsive Styles --- */
+
+/* Ensures the image scales down correctly without breaking its container */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Aligns the properties card to the left on mobile, and right on desktop */
+.properties-wrapper {
+  justify-content: flex-start;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .properties-wrapper {
+    justify-content: flex-end;
+  }
 }
 </style>

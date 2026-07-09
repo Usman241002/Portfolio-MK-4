@@ -18,7 +18,7 @@ const props = defineProps({
   background-color: var(--surface);
   border: 1px solid var(--text-primary);
   padding: 1.25rem;
-  width: 20rem;
+  width: 100%;
 }
 
 .properties-card h2 {

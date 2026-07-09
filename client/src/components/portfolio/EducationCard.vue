@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <Row class="experience-card">
+  <Row class="education-card">
     <Col :xs="8" :sm="6" :md="4">
       <p class="timeline">
         {{ dayjs(item.start_date).format('MM-YYYY') }} →
@@ -29,12 +29,12 @@ defineProps({
 </template>
 
 <style scoped>
-.experience-card {
+.education-card {
   padding: 1rem 0;
   border-bottom: 1px solid var(--border);
 }
 
-.experience-card:last-child {
+.education-card:last-child {
   border-bottom: none;
 }
 

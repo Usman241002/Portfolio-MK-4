@@ -49,20 +49,6 @@ CREATE TABLE project_cases (
 );
 
 
--- -- PROJECT IMAGES
--- CREATE TABLE project_images (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     project_id INT NOT NULL,
---     image_url VARCHAR(255) NOT NULL,
---     caption VARCHAR(255),
-
---     CONSTRAINT fk_project_images_project
---         FOREIGN KEY (project_id)
---         REFERENCES projects(id)
---         ON DELETE CASCADE
---         ON UPDATE CASCADE
--- );
-
 -- SKILLS
 CREATE TABLE skills (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -87,22 +73,16 @@ CREATE TABLE project_skills (
         ON DELETE RESTRICT
 );
 
--- -- EDUCATION
--- CREATE TABLE education (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     user_id INT NOT NULL,
---     institution VARCHAR(255) NOT NULL,
---     course VARCHAR(255) NOT NULL,
---     qualification VARCHAR(255) NOT NULL,
---     start_date DATE NOT NULL,
---     end_date DATE,
---     description TEXT,
-
---     CONSTRAINT fk_education_user
---         FOREIGN KEY (user_id)
---         REFERENCES users(id)
---         ON DELETE CASCADE
--- );
+-- EDUCATION
+CREATE TABLE education (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    start_date DATE NOT NULL,
+    end_date DATE NULL,
+    title VARCHAR(255) NOT NULL,
+    company VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    description TEXT
+);
 
 -- EXPERIENCE
 CREATE TABLE experience (

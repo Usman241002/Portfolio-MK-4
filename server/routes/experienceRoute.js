@@ -16,6 +16,6 @@ const experienceRouter = new Router({
 //GET /api/experience
 experienceRouter.get("/", getExperienceValidator, getExperience);
 // PUT /api/experience;
-experienceRouter.put("/", updateExperienceValidator, updateExperience);
+experienceRouter.put("/", updateExperienceValidator, jwtMiddleware, updateExperience);
 
 export default experienceRouter;

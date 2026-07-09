@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import { Flex, Divider, Collapse, Button } from 'ant-design-vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import Subtitle from '@/components/portfolio/Subtitle.vue'
-import TimelineCard from '@/components/dashboard/TimelineCard.vue'
+import ExperienceCard from '@/components/dashboard/ExperienceCard.vue'
 import BaseButton from '@/components/portfolio/BaseButton.vue'
 import dayjs from 'dayjs'
 
@@ -56,7 +56,7 @@ function onRemove(id) {
           </Flex>
         </template>
 
-        <TimelineCard :experience="exp" />
+        <ExperienceCard :experience="exp" />
       </Collapse.Panel>
     </Collapse>
 

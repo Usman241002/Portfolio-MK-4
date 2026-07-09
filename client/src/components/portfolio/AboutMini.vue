@@ -9,11 +9,11 @@ const router = useRouter()
 </script>
 
 <template>
-  <Row class="container">
-    <Col :span="6">
+  <Row class="container" :gutter="[0, 24]"  >
+    <Col :xs="24" :md="4" >
       <Subtitle>About</Subtitle>
     </Col>
-    <Col :span="18">
+    <Col :xs="24" :md="20">
       <Flex gap="24" vertical>
         <p class="about-body">
           I’m a <b>full-stack software developer</b> based in Birmingham focused on closing the gap

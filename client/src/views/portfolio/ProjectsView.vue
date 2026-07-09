@@ -49,7 +49,7 @@ watch(
 <template>
   <Flex class="container" gap="24" vertical>
     <Row>
-      <Col :span="10"
+      <Col :xs="24" :sm="17" :md="10"
         ><Flex gap="16" vertical>
           <Title>Selected work []</Title>
 

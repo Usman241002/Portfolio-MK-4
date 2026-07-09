@@ -42,7 +42,7 @@ const phrases = [
 
 <template>
   <Row>
-    <Col :span="14">
+    <Col :xs="24"  :md="16">
       <Flex class="container" gap="24" vertical>
         <Title>Full stack developer</Title>
         <h1 class="hero">
@@ -60,8 +60,8 @@ const phrases = [
         </Flex>
       </Flex>
     </Col>
-    <Col :span="4" />
-    <Col :span="6"
+
+    <Col :xs="24" :md="8"
       ><Flex class="container" align="end" gap="16" vertical>
         <StatCard :title="projectsStore.projects.length" desc="total projects" /><StatCard
           title="4yr"
