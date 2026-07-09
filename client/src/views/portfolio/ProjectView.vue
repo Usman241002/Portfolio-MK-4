@@ -13,28 +13,40 @@ import { API_URL } from '@/config.js'
 const route = useRoute()
 const projectsStore = useProjectsStore()
 
-let project = ref(null)
+const project = ref(null)
 
 const projectId = route.params.id
 
 onMounted(async () => {
   project.value = await projectsStore.getProjectById(projectId)
-  console.log(project.value)
 })
 
-const properties = computed(() => [
-  { name: 'client', value: project.value.client },
-  { name: 'role', value: project.value.role },
-  { name: 'year', value: dayjs(project.value.year).format('YYYY') },
-  {
-    name: 'stack',
-    value: project.value.skills?.map((skill) => skill.name).join(' • ') ?? '',
-  },
-])
+const properties = computed(() => {
+  if (!project.value) return []
+
+  return [
+    { name: 'client', value: project.value.client || 'N/A' },
+    { name: 'role', value: project.value.role || 'N/A' },
+    {
+      name: 'year',
+      value: project.value.year ? dayjs(project.value.year).format('YYYY') : 'N/A'
+    },
+    {
+      name: 'stack',
+      value: Array.isArray(project.value.skills)
+        ? project.value.skills.map((skill) => skill.name).join(' • ')
+        : '',
+    },
+  ]
+})
 </script>
 
 <template>
-  <Flex v-if="project" gap="24" vertical>
+  <Flex v-if="projectsStore.loading" justify="center" style="padding: 2rem;">
+    <p>Loading project...</p>
+    </Flex>
+
+  <Flex v-else-if="project" gap="24" vertical>
     <Row :gutter="[24, 24]">
       <Col :xs="24" :md="16">
         <Flex gap="16" class="hero container" vertical>
@@ -87,6 +99,10 @@ const properties = computed(() => [
         </Col>
       </Row>
     </div>
+  </Flex>
+
+  <Flex v-else justify="center" style="padding: 2rem;">
+    <p>Project not found.</p>
   </Flex>
 </template>
 
