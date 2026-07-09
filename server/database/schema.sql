@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS projects;
 DROP TABLE IF EXISTS skills;
 DROP TABLE IF EXISTS profile;
 
-
 -- PROFILE
 CREATE TABLE profile (
     name VARCHAR(255),
@@ -140,6 +139,11 @@ VALUES
 ('2024-06-01', '2024-12-31', 'Frontend Developer Intern', 'Nova Labs', 'internship', 'London, UK', 'Built Vue.js dashboards and improved UI performance across internal tools.'),
 
 ('2023-01-01', '2024-05-31', 'Junior Web Developer', 'Freelance', 'freelance', 'Remote', 'Delivered full-stack web applications for small business clients using Vue, PHP, and Node.js.');
+
+INSERT INTO education (start_date, end_date, title, company, location, description)
+VALUES
+('2025-01-01', '2026-01-01', 'Software Engineer', 'Coventry University', 'Coventry, UK', 'Relevant coursework: Web Development - 92%, Web API Development - 80%, Dissertation and Project Artefact - 75%, User Experience Design - 70%');
+
 
 INSERT INTO projects
 (title, subtitle, year, client, role, description, status, repository_url, live_demo_url)

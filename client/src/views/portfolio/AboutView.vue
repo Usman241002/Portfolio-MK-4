@@ -10,15 +10,16 @@ import EducationCard from '@/components/portfolio/EducationCard.vue'
 
 import useExperienceStore from '@/stores/experienceStore.js'
 import useSkillsStore from '@/stores/skillsStore.js'
-import useEducationStore from '../../stores/educationStore'
+import useEducationStore from '@/stores/educationStore.js'
 
 const experienceStore = useExperienceStore()
 const skillsStore = useSkillsStore()
-const educationStore = useExperienceStore()
+const educationStore = useEducationStore()
 
 
 onMounted(async () => {
   await experienceStore.fetchExperience()
+  await educationStore.fetchEducation()
 })
 </script>
 
