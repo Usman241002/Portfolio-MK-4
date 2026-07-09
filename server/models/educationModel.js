@@ -26,6 +26,8 @@ async function updateEducation(education) {
       ],
     );
   }
+
+  return true
 }
 
 export const educationModel = {

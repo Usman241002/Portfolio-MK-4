@@ -26,6 +26,8 @@ async function updateExperience(experience) {
         exp.description,
       ],
     );
+
+    return true
   }
 }
 
